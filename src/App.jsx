@@ -18,7 +18,6 @@ function App() {
 
   return (
     <div>
-      {/* suggest input as a textArea */}
       <h1>Enter your dream</h1> 
       <p>Enter your dream and AI will interpret it for you</p>
       <textarea onChange={e => setText(e.target.value)} />
