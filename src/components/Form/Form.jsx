@@ -19,7 +19,7 @@ export default function Form() {
 
     return (
         <div>
-            <h1>Enter your dream</h1>
+            <h1 className='text-5xl text-red-500'>Enter your dream</h1>
             <p>Enter your dream and AI will interpret it for you</p>
             <textarea onChange={e => setText(e.target.value)} />
             <button onClick={getInterpretation}>Submit</button>
