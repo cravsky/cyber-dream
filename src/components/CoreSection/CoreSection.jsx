@@ -7,6 +7,7 @@ export default function CoreSection() {
 
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/interpret'
     // const requestUrl = 'http://localhost:8000/interpret'
+    // const requestUrl = '/interpret'
 
     const getInterpretation = async () => {
         const response = await fetch(requestUrl, {
