@@ -8,8 +8,8 @@ export default function CoreSection() {
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api'
     const requestTestUrl = 'https://cyber-dream-be-test.up.railway.app/api/test'
 
-    const getInterpretation = async () => {
-        const response = await fetch(requestUrl, {
+    const getInterpretation = async (url) => {
+        const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify({ text: userInput }),
