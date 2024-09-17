@@ -5,10 +5,8 @@ export default function CoreSection() {
     const [userInput, setUserInput] = useState('')
     const [response, setResponse] = useState('')
 
-    // const requestUrl = 'https://cyber-dream-be-test.up.railway.app/interpret'
-    const requestUrl = 'http://localhost:8000/api'
-    // const requestUrl = '/interpret'
-    // const requestUrl = '/api'
+    const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api'
+    // const requestUrl = 'http://localhost:8000/api'
 
     const getInterpretation = async () => {
         const response = await fetch(requestUrl, {
