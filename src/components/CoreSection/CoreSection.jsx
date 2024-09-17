@@ -6,7 +6,7 @@ export default function CoreSection() {
     const [response, setResponse] = useState('')
 
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api'
-    // const requestUrl = 'http://localhost:8000/api'
+    const requestTestUrl = 'https://cyber-dream-be-test.up.railway.app/api/test'
 
     const getInterpretation = async () => {
         const response = await fetch(requestUrl, {
@@ -33,13 +33,13 @@ export default function CoreSection() {
 
                 </div>
 
-                <button className="btn btn-primary mt-2" onClick={getInterpretation}>Analizuj</button>
-
+                <button className="btn btn-primary mt-2 mx-2" onClick={() => getInterpretation(requestUrl)}>Analizuj</button>
+                <button className="btn btn-primary mt-2" onClick={() => getInterpretation(requestTestUrl)}>TEST</button >
                 <p className="py-24 text-left">
                     {response}
                 </p>
 
-            </section>
+            </section >
         </>
 
         // <div>
