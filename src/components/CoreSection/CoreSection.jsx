@@ -7,15 +7,18 @@ export default function CoreSection() {
 
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api'
     const requestTestUrl = 'https://cyber-dream-be-test.up.railway.app/api/test'
-    // const requestUrl = 'http://localhost:3000/api'
-    // const requestTestUrl = 'http://localhost:3000/api/test'
+    // const requestUrl = 'http://localhost:8000/api'
+    // const requestTestUrl = 'http://localhost:8000/api/test'
 
     const getInterpretation = async (url) => {
         const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify({ text: userInput }),
-            mode: 'cors' // Ensure CORS mode is set
+            mode: 'cors'
         })
         const data = await response.json()
         console.log(data);
