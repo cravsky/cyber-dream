@@ -3,15 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // server: {
-    // proxy: {
-    //   '/cyber-dream': {
-    //     target: 'https://cyber-dream-be-test.up.railway.app/interpret',
-    //     changeOrigin: true,
-    //     // rewrite: path => path.replace(/^\/interpret/, '')
-    //   }
-    // }
-  // },
   server: {
     proxy: {
       // This will intercept any request to '/api' and proxy it to your target API
