@@ -39,7 +39,7 @@ export default function CoreSection() {
 
                 </div>
 
-                <button className="btn btn-primary mt-2 mx-2" onClick={() => getInterpretation(requestUrl)}>Analizuj</button>
+                <button className="btn btn-primary mt-2 mx-2" onClick={() => getInterpretation(requestUrl)}>PROD</button>
                 <button className="btn btn-primary mt-2" onClick={() => getInterpretation(requestTestUrl)}>TEST</button >
                 <p className="py-24 text-left">
                     {response}
