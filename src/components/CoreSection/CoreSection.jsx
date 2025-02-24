@@ -11,7 +11,7 @@ export default function CoreSection() {
     const requestTestUrl = 'https://cyber-dream-be-test.up.railway.app/api/test'
 
     const getInterpretation = async (url) => {
-        setLoading(true); 
+        setLoading(true);
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -61,7 +61,7 @@ export default function CoreSection() {
                 <button
                     className="btn btn-primary mt-2 mx-2"
                     onClick={() => getInterpretation(requestUrl)}
-                    disabled={loading} 
+                    disabled={loading}
                 >
                     {loading ? 'Ładowanie...' : 'PROD'}
                 </button>
@@ -80,7 +80,7 @@ export default function CoreSection() {
                         </div>
                     )}
                 </div>
-                <p className="max-w-lg mx-auto py-4 px-4 text-left border border-gray-300 bg-white bg-opacity-30 text-gray-900 rounded-lg shadow-md backdrop-blur-md">
+                <p className="max-w-lg mx-auto py-4 px-4 text-left border border-gray-300 bg-white bg-opacity-30 text-gray-900 rounded-lg shadow-md backdrop-blur-md break-words overflow-auto max-h-60">
                     {response}
                 </p>
             </section>
