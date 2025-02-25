@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CoreSection from './components/CoreSection/CoreSection';
 import Header from './components/Header/Header';
 import Background from './components/Background/Background';
+import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(false);

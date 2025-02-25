@@ -1,42 +1,79 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+:root {
+  --primary-bg-color: #1e1e1e; /* Dark background */
+  --primary-text-color: #ffffff; /* White text */
+  --accent-color: #ff9800; /* Accent color */
+  --secondary-bg-color: rgba(255, 152, 0, 0.1); /* Light accent background */
+  --secondary-text-color: #121212; /* Dark text for contrast */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* App.css */
+.navbar {
+  background-color: var(--primary-bg-color);
+  padding: 1rem;
+  border-bottom: 2px solid var(--accent-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar a {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* App.css */
+.textarea {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  border: 1px solid var(--accent-color);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.label-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+/* App.css */
+button.btn {
+  background-color: var(--accent-color);
+  color: var(--secondary-text-color);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+button.btn:hover {
+  background-color: darken(var(--accent-color), 10%);
+  color: var(--primary-text-color);
+}
+
+/* App.css */
+.response-box {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
+  border: 1px solid var(--accent-color);
+  box-shadow: 0px 0px 10px rgba(255, 152, 0, 0.3);
+}
+
+/* App.css */
+.background-image {
+  /* Existing styles for the background image */
+}
+
+/* App.css */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg-color: #121212;
+    --primary-text-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --secondary-bg-color: rgba(187, 134, 252, 0.1);
+    --secondary-text-color: #121212;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
