@@ -1,17 +1,19 @@
-import CoreSection from './components/CoreSection/CoreSection'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import Background from './components/Background/Background'
+// App.jsx
+import React, { useState } from 'react';
+import CoreSection from './components/CoreSection/CoreSection';
+import Header from './components/Header/Header';
+import Background from './components/Background/Background';
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
-      <Background />
+      <Background loading={loading} />
       <Header />
-      <CoreSection />
-      <Footer />
+      <CoreSection loading={loading} setLoading={setLoading} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
