@@ -1,5 +1,6 @@
 // CoreSection.jsx
 import React, { useState } from 'react';
+import UserInput from '../UserInput/UserInput';
 
 export default function CoreSection({ loading, setLoading }) {
     const [userInput, setUserInput] = useState('');
@@ -32,24 +33,12 @@ export default function CoreSection({ loading, setLoading }) {
 
     return (
         <section className='core-section'>
-            <div className='core-container'>
-                <label className="core-label">
-                    <span>Opisz swój sen</span>
-                    <textarea
-                        className="core-textarea"
-                        placeholder="Np. śniło mi się, że..."
-                        onChange={e => setUserInput(e.target.value)}
-                    />
-                </label>
-                <label className="core-label">
-                    <span>Dodatkowe informacje</span>
-                    <textarea
-                        className="core-textarea"
-                        placeholder="Np. jestem studentem informatyki, niedawno rozstałem się z dziewczyną..."
-                        onChange={e => setAdditionalInfo(e.target.value)}
-                    />
-                </label>
-            </div>
+            <UserInput 
+                userInput={userInput} 
+                setUserInput={setUserInput} 
+                additionalInfo={additionalInfo} 
+                setAdditionalInfo={setAdditionalInfo} 
+            />
 
             <button
                 className="core-button"
@@ -66,12 +55,8 @@ export default function CoreSection({ loading, setLoading }) {
                 {loading ? 'Ładowanie...' : 'TEST'}
             </button>
 
-            {loading && (
-                <div className="loading-spinner"></div>
-            )}
-            {!loading && response && (
-                <p className="response-box">{response}</p>
-            )}
+            {loading && <div className="loading-spinner"></div>}
+            {!loading && response && <p className="response-box">{response}</p>}
         </section>
     );
 }
