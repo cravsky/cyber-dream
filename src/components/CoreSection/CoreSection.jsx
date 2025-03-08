@@ -31,24 +31,20 @@ export default function CoreSection({ loading, setLoading }) {
     };
 
     return (
-        <section className='p-5 text-center mx-auto'>
-            <div className='max-w-lg mx-auto'>
-                <label className="block text-center mb-2">
-                    <div className="label">
-                        <span className="label-text">Opisz swój sen</span>
-                    </div>
+        <section className='core-section'>
+            <div className='core-container'>
+                <label className="core-label">
+                    <span>Opisz swój sen</span>
                     <textarea
-                        className="textarea textarea-bordered textarea-primary h-24 w-full max-w-xl"
+                        className="core-textarea"
                         placeholder="Np. śniło mi się, że..."
                         onChange={e => setUserInput(e.target.value)}
                     />
                 </label>
-                <label className="block text-center mb-2">
-                    <div className="label">
-                        <span className="label-text">Dodatkowe informacje</span>
-                    </div>
+                <label className="core-label">
+                    <span>Dodatkowe informacje</span>
                     <textarea
-                        className="textarea textarea-bordered textarea-secondary h-24 w-full max-w-xl"
+                        className="core-textarea"
                         placeholder="Np. jestem studentem informatyki, niedawno rozstałem się z dziewczyną..."
                         onChange={e => setAdditionalInfo(e.target.value)}
                     />
@@ -56,14 +52,14 @@ export default function CoreSection({ loading, setLoading }) {
             </div>
 
             <button
-                className="btn btn-primary mt-2 mx-2"
+                className="core-button"
                 onClick={() => getInterpretation(requestUrl)}
                 disabled={loading}
             >
                 {loading ? 'Ładowanie...' : 'PROD'}
             </button>
             <button
-                className="btn btn-primary mt-2"
+                className="core-button"
                 onClick={() => getInterpretation(requestTestUrl)}
                 disabled={loading}
             >
@@ -71,15 +67,10 @@ export default function CoreSection({ loading, setLoading }) {
             </button>
 
             {loading && (
-                <div className="flex justify-center items-center mt-4">
-                    <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500"></div>
-                </div>
+                <div className="loading-spinner"></div>
             )}
             {!loading && response && (
-                <p
-                    className="max-w-lg mx-auto py-4 px-4 text-left border border-gray-300 bg-white bg-opacity-30 text-gray-900 rounded-lg shadow-md backdrop-blur-md break-words overflow-auto max-h-60">
-                    {response}
-                </p>
+                <p className="response-box">{response}</p>
             )}
         </section>
     );
