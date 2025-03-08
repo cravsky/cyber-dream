@@ -1,72 +1,93 @@
+/* Updated styles for Cyber Dream */
+
+:root {
+  /* Updated Color Scheme */
+  --color-text: #e0e0e0;
+  --color-primary: #6a0572;
+  --color-secondary: #240046;
+  --color-dark: #10002b;
+  --color-bg: #1a1a2e;
+  
+  /* Font Settings */
+  --font-main: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(to bottom, #10002b, #240046);
+  color: var(--color-text);
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  color: #ffffff;
 }
 
 .custom-navbar {
-  background-color: #1e1e1e;
-  padding: 1rem;
-  border-bottom: 2px solid #ff9800;
+  background-color: transparent; /* Remove solid background */
+  padding: 2rem 1rem; /* Vertical spacing */
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .custom-button {
-  color: #ff9800;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 10px;
+  color: var(--color-primary); /* Utilize your primary theme color */
+  font-size: 2.5rem; /* Adjust to desired Hero size */
+  font-family: var(--font-main);
+  font-weight: 700; /* Bold, attention-grabbing */
+  text-align: center;
+  cursor: default; /* since this seems to be non-clickable */
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.5); /* subtle shadow for depth */
 }
 
 .core-section {
-  padding: 20px;
+  padding: 30px;
   text-align: center;
+  max-width: 800px;
   margin: auto;
 }
 
 .core-container {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
 }
 
 .core-label {
   display: block;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-weight: bold;
-  color: #ff9800;
+  font-size: 1.2rem;
 }
 
 .core-textarea {
   width: 100%;
-  height: 100px;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border: 1px solid #ff9800;
-  padding: 10px;
-  border-radius: 5px;
+  height: 120px;
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1.1rem;
 }
 
 .core-button {
-  background-color: #ff9800;
-  color: #121212;
-  padding: 10px 20px;
-  font-size: 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  padding: 12px 24px;
+  font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-}
-
-.response-box {
-  color: black;
+  margin: 10px;
 }
 
 .core-button:hover {
-  background-color: #ff6f00;
+  background-color: #82008b;
   color: #ffffff;
 }
 
@@ -75,10 +96,10 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(255, 152, 0, 0.3);
-  border-top-color: #ff9800;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -88,22 +109,11 @@
   to { transform: rotate(360deg); }
 }
 
-/* .background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  filter: brightness(0.4);
-  opacity: 0.8;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+.hero-text {
+  color: var(--color-primary); /* sets the correct theme primary color */
+  font-size: 3rem; /* sets a large, hero-style font size */
+  font-family: var(--font-main); /* consistent font across your app */
+  padding: 20px 0; /* proper vertical spacing */
+  text-align: center; /* centers your hero text */
+  font-weight: bold; /* makes the hero text more prominent */
 }
-
-.background.loading {
-  filter: brightness(1.0);
-  opacity: 1.0;
-} */
