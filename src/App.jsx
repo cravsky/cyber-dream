@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import CoreSection from './components/CoreSection/CoreSection';
 import Header from './components/Header/Header';
-import Background from './components/Background/Background';
+// import Background from './components/Background/Background';
 import './App.css';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Background loading={loading} />
+      {/* <Background loading={loading} /> */}
       <Header />
       <CoreSection loading={loading} setLoading={setLoading} />
     </>

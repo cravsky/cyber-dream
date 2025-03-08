@@ -61,6 +61,10 @@
   cursor: pointer;
 }
 
+.response-box {
+  color: black;
+}
+
 .core-button:hover {
   background-color: #ff6f00;
   color: #ffffff;
@@ -84,7 +88,7 @@
   to { transform: rotate(360deg); }
 }
 
-.background {
+/* .background {
   position: fixed;
   top: 0;
   left: 0;
@@ -102,4 +106,4 @@
 .background.loading {
   filter: brightness(1.0);
   opacity: 1.0;
-}
+} */
