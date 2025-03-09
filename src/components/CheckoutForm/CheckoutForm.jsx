@@ -12,6 +12,7 @@ export default function CheckoutForm({ onSuccess }) {
             const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 100, currency: 'pln', }) // ✅ Ensure 5 PLN (500 grosze)
             });
 
             const { url } = await response.json();

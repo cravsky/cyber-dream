@@ -9,9 +9,14 @@ export default function CoreSection({ loading, setLoading }) {
     const [showPayment, setShowPayment] = useState(false);
     const [awaitingPayment, setAwaitingPayment] = useState(false);
 
+    // Debugging: Log state updates
     useEffect(() => {
-        console.log("showPayment state updated:", showPayment);
+        console.log("🔥 showPayment state updated:", showPayment);
     }, [showPayment]);
+
+    useEffect(() => {
+        console.log("🔥 awaitingPayment state updated:", awaitingPayment);
+    }, [awaitingPayment]);
 
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api';
 
@@ -37,6 +42,7 @@ export default function CoreSection({ loading, setLoading }) {
     };
 
     const handlePaymentSuccess = () => {
+        console.log("✅ Payment successful! Hiding form...");
         setShowPayment(false);
         setAwaitingPayment(false);
         getInterpretation();
@@ -51,20 +57,32 @@ export default function CoreSection({ loading, setLoading }) {
                 setAdditionalInfo={setAdditionalInfo} 
             />
 
+            {/* Button to Trigger Payment */}
             <button
                 className="core-button"
                 onClick={() => {
-                    console.log("PROD button clicked, showing payment form...");
+                    console.log("🟢 PROD button clicked! Triggering payment form...");
                     setShowPayment(true);
                     setAwaitingPayment(true);
+                    console.log("🔥 showPayment should now be:", true);
                 }}
                 disabled={loading}
             >
                 {loading ? 'Ładowanie...' : 'PROD'}
             </button>
 
+            {/* Debugging: Show current state */}
+            <p>showPayment: {showPayment ? "✅ TRUE" : "❌ FALSE"}</p>
+
             {/* Show payment form if triggered */}
-            {showPayment ? <CheckoutForm onSuccess={handlePaymentSuccess} /> : <p>Payment form is hidden.</p>}
+            {showPayment ? (
+                <>
+                    <p>✅ Payment form should now be visible!</p>
+                    <CheckoutForm onSuccess={handlePaymentSuccess} />
+                </>
+            ) : (
+                <p>❌ Payment form is hidden.</p>
+            )}
 
             {/* Display response after successful payment */}
             {!loading && response && <p className="response-box">{response}</p>}
