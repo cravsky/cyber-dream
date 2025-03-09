@@ -37,7 +37,6 @@ export default function CoreSection({ loading, setLoading }) {
     };
 
     const handlePaymentSuccess = () => {
-        console.log("Payment Successful, Fetching Interpretation...");
         setShowPayment(false);
         setAwaitingPayment(false);
         getInterpretation();

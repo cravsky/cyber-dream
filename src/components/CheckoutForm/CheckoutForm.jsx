@@ -11,59 +11,32 @@ export default function CheckoutForm({ onSuccess }) {
         console.log("Stripe Loaded:", stripe);
     }, [stripe]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handlePayment = async () => {
         setLoading(true);
 
-        if (!stripe || !elements) {
-            setMessage('Stripe is not loaded');
-            console.error("Stripe is not available.");
-            setLoading(false);
-            return;
-        }
-
-        console.log("Attempting to create payment intent...");
-
-        // Call backend to create PaymentIntent
-        const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-payment-intent', {
+        const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount: 5000, currency: 'usd' })
         });
 
-        const data = await response.json();
-        console.log("Received client secret:", data);
+        const { url } = await response.json();
 
-        if (!data.clientSecret) {
-            setMessage('Failed to generate payment intent.');
-            setLoading(false);
-            return;
-        }
-
-        const result = await stripe.confirmCardPayment(data.clientSecret, {
-            payment_method: {
-                card: elements.getElement(CardElement),
-            }
-        });
-
-        if (result.error) {
-            console.error("Payment Error:", result.error.message);
-            setMessage(result.error.message);
+        if (url) {
+            window.location.href = url; // Redirect user to Stripe Checkout
         } else {
-            console.log("Payment Successful:", result);
-            setMessage('Payment successful!');
-            onSuccess(); // Trigger interpretation after successful payment
+            setMessage('Error creating checkout session');
         }
 
         setLoading(false);
     };
 
+
     return (
         <form onSubmit={handleSubmit} className="checkout-form">
             <h2>Complete Your Payment</h2>
             <CardElement />
-            <button type="submit" disabled={!stripe || loading}>
-                {loading ? 'Processing...' : 'Pay Now'}
+            <button onClick={handlePayment} disabled={loading}>
+                {loading ? 'Redirecting...' : 'Proceed to Payment'}
             </button>
             {message && <p>{message}</p>}
         </form>
