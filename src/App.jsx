@@ -1,9 +1,11 @@
 // App.jsx
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CoreSection from './components/CoreSection/CoreSection';
 import Header from './components/Header/Header';
+import Cancel from './components/Cancel/Cancel'; // Correct import for Cancel page
 import './App.css';
 
 // Load Stripe with publishable key
@@ -13,14 +15,22 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     return (
-        <>
+        <Router>
             <div className="app-background">
                 <Header />
-                <Elements stripe={stripePromise}>
-                    <CoreSection loading={loading} setLoading={setLoading} />
-                </Elements>
+                <Routes>
+                    <Route 
+                        path="/" 
+                        element={
+                            <Elements stripe={stripePromise}>
+                                <CoreSection loading={loading} setLoading={setLoading} />
+                            </Elements>
+                        } 
+                    />
+                    <Route path="/cancel" element={<Cancel />} /> {/* Route for Cancel page */}
+                </Routes>
             </div>
-        </>
+        </Router>
     );
 }
 
