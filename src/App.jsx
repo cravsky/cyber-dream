@@ -13,17 +13,17 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     return (
-        <Router>
+        <Router basename="/cyber-dream">
             <div className="app-background">
                 <Header />
                 <Routes>
-                    <Route 
-                        path="/" 
+                    <Route
+                        path="/"
                         element={
                             <Elements stripe={stripePromise}>
                                 <CoreSection loading={loading} setLoading={setLoading} />
                             </Elements>
-                        } 
+                        }
                     />
                     <Route path="/cancel" element={<Cancel />} />
                 </Routes>
