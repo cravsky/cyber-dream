@@ -1,19 +1,24 @@
-// CoreSection.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserInput from '../UserInput/UserInput';
+import CheckoutForm from '../CheckoutForm/CheckoutForm';
 
 export default function CoreSection({ loading, setLoading }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
     const [response, setResponse] = useState('');
+    const [showPayment, setShowPayment] = useState(false);
+    const [awaitingPayment, setAwaitingPayment] = useState(false);
+
+    useEffect(() => {
+        console.log("showPayment state updated:", showPayment);
+    }, [showPayment]);
 
     const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api';
-    const requestTestUrl = 'https://cyber-dream-be-test.up.railway.app/api/test';
 
-    const getInterpretation = async (url) => {
+    const getInterpretation = async () => {
         setLoading(true);
         try {
-            const res = await fetch(url, {
+            const res = await fetch(requestUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,6 +36,13 @@ export default function CoreSection({ loading, setLoading }) {
         }
     };
 
+    const handlePaymentSuccess = () => {
+        console.log("Payment Successful, Fetching Interpretation...");
+        setShowPayment(false);
+        setAwaitingPayment(false);
+        getInterpretation();
+    };
+
     return (
         <section className='core-section'>
             <UserInput 
@@ -42,20 +54,20 @@ export default function CoreSection({ loading, setLoading }) {
 
             <button
                 className="core-button"
-                onClick={() => getInterpretation(requestUrl)}
+                onClick={() => {
+                    console.log("PROD button clicked, showing payment form...");
+                    setShowPayment(true);
+                    setAwaitingPayment(true);
+                }}
                 disabled={loading}
             >
                 {loading ? 'Ładowanie...' : 'PROD'}
             </button>
-            <button
-                className="core-button"
-                onClick={() => getInterpretation(requestTestUrl)}
-                disabled={loading}
-            >
-                {loading ? 'Ładowanie...' : 'TEST'}
-            </button>
 
-            {loading && <div className="loading-spinner"></div>}
+            {/* Show payment form if triggered */}
+            {showPayment ? <CheckoutForm onSuccess={handlePaymentSuccess} /> : <p>Payment form is hidden.</p>}
+
+            {/* Display response after successful payment */}
             {!loading && response && <p className="response-box">{response}</p>}
         </section>
     );
