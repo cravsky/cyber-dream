@@ -15,5 +15,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  base: '/cyber-dream/'
+  base: '/'
 })

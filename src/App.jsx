@@ -13,7 +13,7 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     return (
-        <Router basename="/cyber-dream">
+        <Router>
             <div className="app-background">
                 <Header />
                 <Routes>
