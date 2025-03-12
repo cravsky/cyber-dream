@@ -1,41 +1,66 @@
-// CheckoutForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import UserInput from '../UserInput/UserInput';
+import CheckoutForm from '../CheckoutForm/CheckoutForm';
 
-export default function CheckoutForm({ onSuccess }) {
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
+export default function CoreSection({ loading, setLoading }) {
+    const [userInput, setUserInput] = useState('');
+    const [additionalInfo, setAdditionalInfo] = useState('');
+    const [response, setResponse] = useState('');
+    const [showPayment, setShowPayment] = useState(false);
+    const [awaitingPayment, setAwaitingPayment] = useState(false);
 
-    const handlePayment = async () => {
+    useEffect(() => {
+        console.log("🔥 showPayment state updated:", showPayment);
+    }, [showPayment]);
+
+    useEffect(() => {
+        console.log("🔥 awaitingPayment state updated:", awaitingPayment);
+    }, [awaitingPayment]);
+
+    const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api';
+
+    const getInterpretation = async () => {
         setLoading(true);
-
         try {
-            const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
+            const res = await fetch(requestUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 100, currency: 'pln' })
+                body: JSON.stringify({ text: userInput, additional: additionalInfo }),
             });
-
-            const { url } = await response.json();
-
-            if (url) {
-                window.location.href = url; // Redirect user to Stripe Checkout
-            } else {
-                setMessage('Error creating checkout session');
-                setLoading(false);
-            }
+            const data = await res.json();
+            setResponse(data.response);
         } catch (error) {
-            setMessage('Payment request failed');
+            setResponse('Error fetching interpretation');
+        } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="checkout-container">
-            <h2>Complete Your Payment</h2>
-            <button onClick={handlePayment} disabled={loading}>
-                {loading ? 'Redirecting...' : 'Proceed to Payment'}
+        <section className='core-section'>
+            <UserInput 
+                userInput={userInput} 
+                setUserInput={setUserInput} 
+                additionalInfo={additionalInfo} 
+                setAdditionalInfo={setAdditionalInfo} 
+            />
+
+            <button
+                className="core-button"
+                onClick={() => {
+                    setShowPayment(true);
+                    setAwaitingPayment(true);
+                }}
+                disabled={loading}
+            >
+                {loading ? 'Loading...' : 'Proceed to Payment'}
             </button>
-            {message && <p>{message}</p>}
-        </div>
+
+            {showPayment && (
+                <CheckoutForm userInput={userInput} additionalInfo={additionalInfo} />
+            )}
+
+            {!loading && response && <p className="response-box">{response}</p>}
+        </section>
     );
 }
