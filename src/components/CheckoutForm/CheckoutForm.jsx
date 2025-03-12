@@ -1,7 +1,7 @@
 // CheckoutForm.jsx
 import React, { useState } from 'react';
 
-export default function CheckoutForm({ onSuccess }) {
+export default function CheckoutForm({ userInput, additionalInfo }) {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -12,7 +12,11 @@ export default function CheckoutForm({ onSuccess }) {
             const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 100, currency: 'pln', }) // ✅ Ensure 5 PLN (500 grosze)
+                body: JSON.stringify({
+                    amount: 100, // Amount in grosze (100 grosze = 1 PLN)
+                    text: userInput, // Send user input
+                    additional: additionalInfo, // Send additional information
+                }),
             });
 
             const { url } = await response.json();
