@@ -1,66 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import UserInput from '../UserInput/UserInput';
-import CheckoutForm from '../CheckoutForm/CheckoutForm';
 
 export default function CoreSection({ loading, setLoading }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
-    const [response, setResponse] = useState('');
-    const [showPayment, setShowPayment] = useState(false);
-    const [awaitingPayment, setAwaitingPayment] = useState(false);
 
     useEffect(() => {
-        console.log("🔥 showPayment state updated:", showPayment);
-    }, [showPayment]);
+        console.log("🔥 User input updated:", userInput);
+    }, [userInput]);
 
     useEffect(() => {
-        console.log("🔥 awaitingPayment state updated:", awaitingPayment);
-    }, [awaitingPayment]);
+        console.log("🔥 Additional info updated:", additionalInfo);
+    }, [additionalInfo]);
 
-    const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api';
+    const handleProceedToPayment = async () => {
+        console.log("🚀 Proceed to Payment button clicked");
+        const truncatedText = userInput.length > 200 ? userInput.substring(0, 200) + "..." : userInput;
+        const truncatedAdditional = additionalInfo.length > 200 ? additionalInfo.substring(0, 200) + "..." : additionalInfo;
 
-    const getInterpretation = async () => {
-        setLoading(true);
         try {
-            const res = await fetch(requestUrl, {
+            const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: userInput, additional: additionalInfo }),
+                body: JSON.stringify({
+                    amount: 100, 
+                    text: userInput,  // Full version sent to backend
+                    additional: additionalInfo,  // Full additional info
+                    truncatedText, // Truncated version for Stripe
+                    truncatedAdditional, // Truncated version for Stripe
+                }),
             });
-            const data = await res.json();
-            setResponse(data.response);
+    
+            console.log("📨 Request sent to backend");
+    
+            const data = await response.json();
+            console.log("📩 Backend response:", data);
+    
+            if (data && data.url) {
+                console.log("✅ Redirecting to:", data.url);
+                window.location.href = data.url;
+            } else {
+                console.error("❌ Error: No URL received from backend");
+            }
         } catch (error) {
-            setResponse('Error fetching interpretation');
-        } finally {
-            setLoading(false);
+            console.error("❌ Payment request failed:", error);
         }
     };
 
+
     return (
         <section className='core-section'>
-            <UserInput 
-                userInput={userInput} 
-                setUserInput={setUserInput} 
-                additionalInfo={additionalInfo} 
-                setAdditionalInfo={setAdditionalInfo} 
+            <UserInput
+                userInput={userInput}
+                setUserInput={setUserInput}
+                additionalInfo={additionalInfo}
+                setAdditionalInfo={setAdditionalInfo}
             />
 
             <button
                 className="core-button"
-                onClick={() => {
-                    setShowPayment(true);
-                    setAwaitingPayment(true);
-                }}
+                onClick={handleProceedToPayment}
                 disabled={loading}
             >
                 {loading ? 'Loading...' : 'Proceed to Payment'}
             </button>
-
-            {showPayment && (
-                <CheckoutForm userInput={userInput} additionalInfo={additionalInfo} />
-            )}
-
-            {!loading && response && <p className="response-box">{response}</p>}
         </section>
     );
 }
