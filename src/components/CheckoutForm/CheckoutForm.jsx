@@ -13,7 +13,7 @@ export default function CheckoutForm({ userInput, additionalInfo }) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    amount: 100, // Amount in grosze (100 grosze = 1 PLN)
+                    amount: 210, // Amount in grosze (100 grosze = 1 PLN)
                     text: userInput, // Send user input
                     additional: additionalInfo, // Send additional information
                 }),
