@@ -23,7 +23,7 @@ export default function CoreSection({ loading, setLoading }) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    amount: 100, 
+                    amount: 200, 
                     text: userInput,  // Full version sent to backend
                     additional: additionalInfo,  // Full additional info
                     truncatedText, // Truncated version for Stripe
