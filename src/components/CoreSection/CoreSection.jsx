@@ -1,91 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import UserInput from '../UserInput/UserInput';
-import CheckoutForm from '../CheckoutForm/CheckoutForm';
+// CheckoutForm.jsx
+import React, { useState } from 'react';
 
-export default function CoreSection({ loading, setLoading }) {
-    const [userInput, setUserInput] = useState('');
-    const [additionalInfo, setAdditionalInfo] = useState('');
-    const [response, setResponse] = useState('');
-    const [showPayment, setShowPayment] = useState(false);
-    const [awaitingPayment, setAwaitingPayment] = useState(false);
+export default function CheckoutForm({ onSuccess }) {
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
-    // Debugging: Log state updates
-    useEffect(() => {
-        console.log("🔥 showPayment state updated:", showPayment);
-    }, [showPayment]);
-
-    useEffect(() => {
-        console.log("🔥 awaitingPayment state updated:", awaitingPayment);
-    }, [awaitingPayment]);
-
-    const requestUrl = 'https://cyber-dream-be-test.up.railway.app/api';
-
-    const getInterpretation = async () => {
+    const handlePayment = async () => {
         setLoading(true);
+
         try {
-            const res = await fetch(requestUrl, {
+            const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify({ text: userInput, additional: additionalInfo }),
-                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 100, currency: 'pln' })
             });
-            const data = await res.json();
-            setResponse(data.response);
+
+            const { url } = await response.json();
+
+            if (url) {
+                window.location.href = url; // Redirect user to Stripe Checkout
+            } else {
+                setMessage('Error creating checkout session');
+                setLoading(false);
+            }
         } catch (error) {
-            setResponse('Error fetching interpretation');
-        } finally {
+            setMessage('Payment request failed');
             setLoading(false);
         }
     };
 
-    const handlePaymentSuccess = () => {
-        console.log("✅ Payment successful! Hiding form...");
-        setShowPayment(false);
-        setAwaitingPayment(false);
-        getInterpretation();
-    };
-
     return (
-        <section className='core-section'>
-            <UserInput 
-                userInput={userInput} 
-                setUserInput={setUserInput} 
-                additionalInfo={additionalInfo} 
-                setAdditionalInfo={setAdditionalInfo} 
-            />
-
-            {/* Button to Trigger Payment */}
-            <button
-                className="core-button"
-                onClick={() => {
-                    console.log("🟢 PROD button clicked! Triggering payment form...");
-                    setShowPayment(true);
-                    setAwaitingPayment(true);
-                    console.log("🔥 showPayment should now be:", true);
-                }}
-                disabled={loading}
-            >
-                {loading ? 'Ładowanie...' : 'PROD'}
+        <div className="checkout-container">
+            <h2>Complete Your Payment</h2>
+            <button onClick={handlePayment} disabled={loading}>
+                {loading ? 'Redirecting...' : 'Proceed to Payment'}
             </button>
-
-            {/* Debugging: Show current state */}
-            <p>showPayment: {showPayment ? "✅ TRUE" : "❌ FALSE"}</p>
-
-            {/* Show payment form if triggered */}
-            {showPayment ? (
-                <>
-                    <p>✅ Payment form should now be visible!</p>
-                    <CheckoutForm onSuccess={handlePaymentSuccess} />
-                </>
-            ) : (
-                <p>❌ Payment form is hidden.</p>
-            )}
-
-            {/* Display response after successful payment */}
-            {!loading && response && <p className="response-box">{response}</p>}
-        </section>
+            {message && <p>{message}</p>}
+        </div>
     );
 }
