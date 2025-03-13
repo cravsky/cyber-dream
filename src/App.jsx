@@ -8,7 +8,8 @@ import Cancel from './components/Cancel/Cancel';
 import Success from './components/Success/Success';
 import './App.css';
 
-const stripePromise = loadStripe('pk_live_51R0gyAHdQdAkXWXbdog3sxyFR6LXv0ePL8Y2asJjlEyun6qVX7BK1HiiaNBoP2JFNQP8bqshPIpFRBCLnGfDYuQQ004cDF9XY4');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 
 function App() {
     const [loading, setLoading] = useState(false);

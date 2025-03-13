@@ -1,3 +1,6 @@
+// NOT USED
+// I am using Checkout Session for payment processing rather than Stripe Elements for inline payments.
+
 // CheckoutForm.jsx
 import React, { useState } from 'react';
 
