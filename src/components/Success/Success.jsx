@@ -5,8 +5,13 @@ export default function Success() {
     const navigate = useNavigate();
     const [interpretation, setInterpretation] = useState('');
 
+    // useEffect(() => {
+    //     fetchInterpretation();
+    // }, []);
     useEffect(() => {
-        fetchInterpretation();
+        setTimeout(() => {
+            fetchInterpretation();
+        }, 5000); // Small delay to allow data to be available
     }, []);
 
     const fetchInterpretation = async () => {
@@ -16,7 +21,7 @@ export default function Success() {
         const storedText = localStorage.getItem("text");
         const storedAdditional = localStorage.getItem("additional");
 
-        if (!storedText || !storedAdditional) {
+        if (!storedText) {
             setInterpretation("❌ No dream data found. Please try again.");
             return;
         }
