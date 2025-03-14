@@ -18,8 +18,9 @@ export default function CoreSection({ loading, setLoading }) {
         const truncatedText = userInput.length > 200 ? userInput.substring(0, 200) + "..." : userInput;
         const truncatedAdditional = additionalInfo.length > 200 ? additionalInfo.substring(0, 200) + "..." : additionalInfo;
 
+        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
         try {
-            const response = await fetch('https://cyber-dream-be-test.up.railway.app/create-checkout-session', {
+            const response = await fetch(`${BACKEND_URL}/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
