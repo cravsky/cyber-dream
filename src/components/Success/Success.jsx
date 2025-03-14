@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Success() {
     const navigate = useNavigate();
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const sessionId = queryParams.get("sessionId");
     const [interpretation, setInterpretation] = useState('');
 
     useEffect(() => {
-        if (sessionId) {
-            fetchInterpretation();
-        }
-    }, [sessionId]);
+        fetchInterpretation();
+    }, []);
 
     const fetchInterpretation = async () => {
+        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
+        // ✅ Get saved dream data from localStorage
+        const storedText = localStorage.getItem("text");
+        const storedAdditional = localStorage.getItem("additional");
+
+        if (!storedText || !storedAdditional) {
+            setInterpretation("❌ No dream data found. Please try again.");
+            return;
+        }
+
+        console.log("♻️ Sending restored input to OpenAI...");
+
         try {
-            const response = await fetch(`https://cyber-dream-be-test.up.railway.app/api/get-interpretation?sessionId=${sessionId}`);
+            const response = await fetch(`${BACKEND_URL}/api/interpret-dream`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: storedText, additional: storedAdditional }),
+            });
+
             const data = await response.json();
             setInterpretation(data.response);
+
+            // ✅ Remove stored input after successful interpretation
+            localStorage.removeItem("text");
+            localStorage.removeItem("additional");
+
         } catch (error) {
-            setInterpretation('Error fetching interpretation');
+            console.error("❌ Error processing interpretation:", error);
+            setInterpretation("Error processing dream interpretation.");
         }
     };
 

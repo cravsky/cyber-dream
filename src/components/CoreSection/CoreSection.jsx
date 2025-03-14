@@ -1,45 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserInput from '../UserInput/UserInput';
 
-export default function CoreSection({ loading, setLoading }) {
+export default function CoreSection({ loading }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
 
-    useEffect(() => {
-        console.log("🔥 User input updated:", userInput);
-    }, [userInput]);
-
-    useEffect(() => {
-        console.log("🔥 Additional info updated:", additionalInfo);
-    }, [additionalInfo]);
-
     const handleProceedToPayment = async () => {
         console.log("🚀 Proceed to Payment button clicked");
-        const truncatedText = userInput.length > 200 ? userInput.substring(0, 200) + "..." : userInput;
-        const truncatedAdditional = additionalInfo.length > 200 ? additionalInfo.substring(0, 200) + "..." : additionalInfo;
+
+        // ✅ Store user input in localStorage before checkout
+        localStorage.setItem("text", userInput);
+        localStorage.setItem("additional", additionalInfo);
 
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
         try {
             const response = await fetch(`${BACKEND_URL}/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+                body: JSON.stringify({ 
                     amount: 200, 
-                    text: userInput,  // Full version sent to backend
-                    additional: additionalInfo,  // Full additional info
-                    truncatedText, // Truncated version for Stripe
-                    truncatedAdditional, // Truncated version for Stripe
+                    text: userInput,
+                    additional: additionalInfo 
                 }),
             });
-    
-            console.log("📨 Request sent to backend");
-    
+
             const data = await response.json();
-            console.log("📩 Backend response:", data);
-    
             if (data && data.url) {
-                console.log("✅ Redirecting to:", data.url);
-                window.location.href = data.url;
+                window.location.href = data.url; // ✅ Redirect to Stripe
             } else {
                 console.error("❌ Error: No URL received from backend");
             }
@@ -47,7 +35,6 @@ export default function CoreSection({ loading, setLoading }) {
             console.error("❌ Payment request failed:", error);
         }
     };
-
 
     return (
         <section className='core-section'>
@@ -58,11 +45,7 @@ export default function CoreSection({ loading, setLoading }) {
                 setAdditionalInfo={setAdditionalInfo}
             />
 
-            <button
-                className="core-button"
-                onClick={handleProceedToPayment}
-                disabled={loading}
-            >
+            <button className="core-button" onClick={handleProceedToPayment} disabled={loading}>
                 {loading ? 'Loading...' : 'Proceed to Payment'}
             </button>
         </section>
