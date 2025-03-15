@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode development",
-    "build": "vite build --mode production",
-    "preview": "vite preview --host --port $PORT --mode production",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host --port $PORT",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
