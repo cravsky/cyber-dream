@@ -5,13 +5,8 @@ export default function Success() {
     const navigate = useNavigate();
     const [interpretation, setInterpretation] = useState('');
 
-    // useEffect(() => {
-    //     fetchInterpretation();
-    // }, []);
     useEffect(() => {
-        setTimeout(() => {
             fetchInterpretation();
-        }, 5000); // Small delay to allow data to be available
     }, []);
 
     const fetchInterpretation = async () => {
@@ -25,8 +20,6 @@ export default function Success() {
             setInterpretation("❌ No dream data found. Please try again.");
             return;
         }
-
-        console.log("♻️ Sending restored input to OpenAI...");
 
         try {
             const response = await fetch(`${BACKEND_URL}/api/interpret-dream`, {

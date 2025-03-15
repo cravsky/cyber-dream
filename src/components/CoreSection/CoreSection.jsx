@@ -6,8 +6,7 @@ export default function CoreSection({ loading }) {
     const [additionalInfo, setAdditionalInfo] = useState('');
 
     const handleProceedToPayment = async () => {
-        console.log("🚀 Proceed to Payment button clicked");
-
+        
         // ✅ Store user input in localStorage before checkout
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
