@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import UserInput from '../UserInput/UserInput';
+import styles from './CoreSection.module.css';
 
 export default function CoreSection({ loading }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
 
     const handleProceedToPayment = async () => {
-        
-        // ✅ Store user input in localStorage before checkout
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
 
@@ -26,7 +25,7 @@ export default function CoreSection({ loading }) {
 
             const data = await response.json();
             if (data && data.url) {
-                window.location.href = data.url; // ✅ Redirect to Stripe
+                window.location.href = data.url;
             } else {
                 console.error("❌ Error: No URL received from backend");
             }
@@ -36,7 +35,7 @@ export default function CoreSection({ loading }) {
     };
 
     return (
-        <section className='core-section'>
+        <section className={styles.coreSection}>
             <UserInput
                 userInput={userInput}
                 setUserInput={setUserInput}
@@ -44,7 +43,7 @@ export default function CoreSection({ loading }) {
                 setAdditionalInfo={setAdditionalInfo}
             />
 
-            <button className="core-button" onClick={handleProceedToPayment} disabled={loading}>
+            <button className={styles.coreButton} onClick={handleProceedToPayment} disabled={loading}>
                 {loading ? 'Loading...' : 'Proceed to Payment'}
             </button>
         </section>

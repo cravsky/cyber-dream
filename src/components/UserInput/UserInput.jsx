@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import styles from './UserInput.module.css';
 
 export default function UserInput({ userInput, setUserInput, additionalInfo, setAdditionalInfo }) {
     const inputRef = useRef(null);
@@ -19,11 +20,11 @@ export default function UserInput({ userInput, setUserInput, additionalInfo, set
     };
 
     return (
-        <div className='core-container'>
-            <label className="core-label">
+        <div className={styles.coreContainer}>
+            <label className={styles.coreLabel}>
                 <span>Opisz swój sen</span>
                 <textarea
-                    className="core-textarea"
+                    className={styles.coreTextarea}
                     placeholder="Np. śniło mi się, że..."
                     value={userInput}
                     onChange={e => setUserInput(e.target.value)}
@@ -32,10 +33,10 @@ export default function UserInput({ userInput, setUserInput, additionalInfo, set
                     ref={inputRef}
                 />
             </label>
-            <label className="core-label">
+            <label className={styles.coreLabel}>
                 <span>Dodatkowe informacje</span>
                 <textarea
-                    className="core-textarea"
+                    className={styles.coreTextarea}
                     placeholder="Np. jestem studentem informatyki, niedawno rozstałem się z dziewczyną..."
                     value={additionalInfo}
                     onChange={e => setAdditionalInfo(e.target.value)}

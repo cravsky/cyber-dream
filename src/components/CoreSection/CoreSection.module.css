@@ -1,0 +1,23 @@
+.coreSection {
+    padding: 30px;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.coreButton {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.coreButton:hover {
+    background-color: #82008b;
+    color: #ffffff;
+}

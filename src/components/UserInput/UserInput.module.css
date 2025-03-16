@@ -1,0 +1,23 @@
+.coreContainer {
+    max-width: 700px;
+    margin: auto;
+}
+
+.coreLabel {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.coreTextarea {
+    width: 100%;
+    height: 120px;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    border: 2px solid var(--color-primary);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+}

@@ -1,0 +1,16 @@
+.customNavbar {
+    background-color: transparent;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .heroText {
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-family: var(--font-main);
+    padding: 20px 0;
+    text-align: center;
+    font-weight: bold;
+  }
