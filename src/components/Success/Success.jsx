@@ -22,7 +22,7 @@ export default function Success() {
         }
 
         try {
-            const response = await fetch(`${BACKEND_URL}/api/interpret-dream`, {
+            const response = await fetch(`${BACKEND_URL}/api/interpret/dream`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: storedText, additional: storedAdditional }),

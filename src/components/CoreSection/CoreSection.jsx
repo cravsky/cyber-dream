@@ -14,7 +14,7 @@ export default function CoreSection({ loading }) {
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
         try {
-            const response = await fetch(`${BACKEND_URL}/create-checkout-session`, {
+            const response = await fetch(`${BACKEND_URL}/api/payment/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
