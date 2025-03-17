@@ -35,16 +35,20 @@ export default function CoreSection({ loading }) {
     };
 
     return (
-        <section className={styles.coreSection}>
+        <section id="core" className={styles.coreSection}>
+            <h2 className={styles.title}>Analizuj</h2>
             <UserInput
                 userInput={userInput}
                 setUserInput={setUserInput}
                 additionalInfo={additionalInfo}
                 setAdditionalInfo={setAdditionalInfo}
             />
-
-            <button className={styles.coreButton} onClick={handleProceedToPayment} disabled={loading}>
-                {loading ? 'Loading...' : 'Proceed to Payment'}
+            <button 
+                className={styles.coreButton} 
+                onClick={handleProceedToPayment} 
+                disabled={loading}
+            >
+                {loading ? 'Loading...' : 'Rozpocznij analizę'}
             </button>
         </section>
     );

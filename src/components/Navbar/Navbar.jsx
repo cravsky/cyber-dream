@@ -5,13 +5,13 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>Cyber Dream</div>
+      <div className={styles.logo}>sennik.dev</div>
       <ul className={styles.navLinks}>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#manual">How It Works</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#credentials">Credentials</a></li>
-        <li><a href="#footer">Contact</a></li>
+        <li><a href="#hero">Strona główna</a></li>
+        <li><a href="#manual">Jak to działa?</a></li>
+        <li><a href="#core">Analizuj</a></li>
+        <li><a href="#faq">Pytania</a></li>
+        <li><a href="#credentials">Opinie</a></li>
       </ul>
     </nav>
   );
