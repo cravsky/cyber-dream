@@ -1,0 +1,11 @@
+.manual {
+    padding: 3rem;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    text-align: center;
+  }
+  
+  .manual h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+  }
