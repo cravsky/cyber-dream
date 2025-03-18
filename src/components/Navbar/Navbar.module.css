@@ -58,3 +58,20 @@
 .navLinks li a:hover::after {
   width: 100%;
 }
+
+.analizujButton {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-text);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.analizujButton:hover {
+  background: var(--color-secondary);
+  transform: scale(1.05);
+}

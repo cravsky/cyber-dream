@@ -1,37 +1,31 @@
-.coreSection {
-  padding: 3rem 2rem;
+.core-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.core-label {
+  display: block;
   text-align: center;
-  margin: 4rem auto;
-  background: rgba(26, 35, 126, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border-radius: 30px;
-  animation: fadeIn 1s ease-out;
-}
-
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.coreButton {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-text);
-  padding: 14px 28px;
+  margin-bottom: 15px;
+  font-weight: bold;
   font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 25px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  border: none;
-  letter-spacing: 0.5px;
 }
 
-.coreButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(123, 158, 249, 0.3);
+.core-textarea {
+  width: 100%;
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+}
+
+/* Make the upper textbox three times bigger than the lower one */
+.core-textarea:first-of-type {
+  height: 360px; /* 3 times bigger than the default 120px */
+}
+
+.core-textarea:last-of-type {
+  height: 120px;
 }
