@@ -1,31 +1,38 @@
-.core-container {
-  max-width: 700px;
-  margin: auto;
+.coreSection {
+  padding: 0;
 }
 
-.core-label {
-  display: block;
+.title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
   text-align: center;
-  margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.core-textarea {
+.coreButton {
   width: 100%;
-  background-color: var(--color-dark);
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: var(--color-text);
-  border: 2px solid var(--color-primary);
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 1.1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-/* Make the upper textbox three times bigger than the lower one */
-.core-textarea:first-of-type {
-  height: 360px; /* 3 times bigger than the default 120px */
+.coreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(123, 158, 249, 0.3);
 }
 
-.core-textarea:last-of-type {
-  height: 120px;
+.coreButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
