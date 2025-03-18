@@ -5,8 +5,8 @@ export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.content}>
-        <h1>Odkryj znaczenie swego snu</h1>
-        <p>Opisz swój sen i poznaj jego interpretację</p>
+        <h1>Odkryj znaczenie snu</h1>
+        <p>Sztuczna inteligencja rozwieje tajemnicę</p>
       </div>
       <div className={styles.imageWrapper}>
         <img 
