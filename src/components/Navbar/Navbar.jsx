@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { FaRegMoon } from 'react-icons/fa';
+import { 
+  FaRegMoon,
+  FaHome,
+  FaBookOpen,
+  FaQuestionCircle,
+  FaUserFriends
+} from 'react-icons/fa';
 import styles from './Navbar.module.css';
 import CoreModal from '../CoreModal/CoreModal';
 
@@ -35,10 +41,30 @@ export default function Navbar() {
         </div>
 
         <ul className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
-          <li><a href="#hero" onClick={closeMenu}>Strona główna</a></li>
-          <li><a href="#manual" onClick={closeMenu}>Jak to działa?</a></li>
-          <li><a href="#faq" onClick={closeMenu}>Pytania</a></li>
-          <li><a href="#credentials" onClick={closeMenu}>Opinie</a></li>
+          <li>
+            <a href="#hero" onClick={closeMenu}>
+              <FaHome className={styles.navIcon} />
+              <span>Strona główna</span>
+            </a>
+          </li>
+          <li>
+            <a href="#manual" onClick={closeMenu}>
+              <FaBookOpen className={styles.navIcon} />
+              <span>Jak to działa?</span>
+            </a>
+          </li>
+          <li>
+            <a href="#faq" onClick={closeMenu}>
+              <FaQuestionCircle className={styles.navIcon} />
+              <span>Pytania</span>
+            </a>
+          </li>
+          <li>
+            <a href="#credentials" onClick={closeMenu}>
+              <FaUserFriends className={styles.navIcon} />
+              <span>Opinie</span>
+            </a>
+          </li>
         </ul>
         
         <button className={`${styles.analizujButton} ${styles.desktopOnly}`} onClick={() => setIsModalOpen(true)}>

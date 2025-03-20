@@ -66,6 +66,19 @@
   position: relative;
   padding: 0.5rem 0;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navIcon {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.navLinks li a:hover .navIcon {
+  color: var(--color-accent);
 }
 
 .navLinks li a::after {
@@ -184,6 +197,15 @@
 
   .navLinks.active {
     right: 0;
+  }
+
+  .navLinks li a {
+    font-size: 1.3rem;
+    padding: 1rem 0;
+  }
+
+  .navIcon {
+    font-size: 1.4rem;
   }
 
   .desktopOnly {
