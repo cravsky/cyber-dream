@@ -43,16 +43,14 @@
   box-sizing: border-box;
 }
 
-/* Make the dream description textarea larger */
 .coreLabel:first-child .coreTextarea {
   height: 300px;
-  min-height: 300px;
+  min-height: 200px;
 }
 
-/* Make the additional info textarea smaller */
 .coreLabel:last-child .coreTextarea {
   height: 120px;
-  min-height: 120px;
+  min-height: 80px;
 }
 
 .coreTextarea:focus {
@@ -63,4 +61,29 @@
 
 .coreTextarea::placeholder {
   color: rgba(183, 198, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .coreContainer {
+    padding: 1rem;
+  }
+
+  .coreLabel span {
+    font-size: 1rem;
+  }
+
+  .coreTextarea {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .coreLabel:first-child .coreTextarea {
+    height: 200px;
+    min-height: 150px;
+  }
+
+  .coreLabel:last-child .coreTextarea {
+    height: 100px;
+    min-height: 60px;
+  }
 }
