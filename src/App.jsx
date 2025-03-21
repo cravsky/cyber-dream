@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Manual from './components/Manual/Manual';
 import FAQ from './components/FAQ/FAQ';
-import Credentials from './components/Credentials/Credentials';
+import Testimonials from './components/Testimonials/Testimonials';
 import Footer from './components/Footer/Footer';
 import Cancel from './components/Cancel/Cancel';
 import Success from './components/Success/Success';
@@ -25,7 +25,7 @@ function App() {
                             <Hero />
                             <Manual />
                             <FAQ />
-                            <Credentials />
+                            <Testimonials />
                             <Footer />
                         </>
                     } />

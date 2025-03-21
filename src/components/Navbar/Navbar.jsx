@@ -60,7 +60,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#credentials" onClick={closeMenu}>
+            <a href="#testimonials" onClick={closeMenu}>
               <FaUserFriends className={styles.navIcon} />
               <span>Opinie</span>
             </a>
