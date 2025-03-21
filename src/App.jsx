@@ -26,7 +26,7 @@ function App() {
                             <Hero />
                             <Manual />
                             <CTA />
-                            <FAQ />
+                            {/* <FAQ /> */}
                             <Testimonials />
                             <Footer />
                         </>

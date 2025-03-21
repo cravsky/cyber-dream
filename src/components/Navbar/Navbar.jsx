@@ -53,12 +53,12 @@ export default function Navbar() {
               <span>Jak to działa?</span>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="#faq" onClick={closeMenu}>
               <FaQuestionCircle className={styles.navIcon} />
               <span>Pytania</span>
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="#testimonials" onClick={closeMenu}>
               <FaUserFriends className={styles.navIcon} />
