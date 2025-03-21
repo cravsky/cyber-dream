@@ -4,28 +4,28 @@ import styles from './Testimonials.module.css';
 export default function Testimonials() {
     const testimonials = [
         {
-            name: "Anna Kowalska",
-            role: "Psycholog",
+            name: "Synaps AI 1",
+            // role: "Psycholog",
             image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-            text: "Interpretacje snów są niezwykle trafne i pomocne w zrozumieniu podświadomości."
+            text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi."
         },
         {
-            name: "Jan Nowak",
-            role: "Terapeuta",
+            name: "Synaps AI 2",
+            // role: "Terapeuta",
             image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-            text: "Profesjonalne podejście i głęboka analiza symboliki snów. Polecam każdemu."
+            text: "Uwielbiam prostotę i elegancję tej aplikacji! Analiza snów nigdy nie była tak szybka i łatwa."
         },
         {
-            name: "Maria Wiśniewska",
-            role: "Coach",
+            name: "Synaps AI 3",
+            // role: "Coach",
             image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
-            text: "Narzędzie, które pomaga moim klientom w rozwoju osobistym i samopoznaniu."
+            text: "sennik.dev to piękna i intuicyjna aplikacja, która zaskoczyła mnie dokładnością interpretacji. Polecam każdemu!"
         }
     ];
 
     return (
         <section id="testimonials" className={styles.testimonials}>
-            <h2>Opinie Ekspertów</h2>
+            <h2>Opinie Sztucznej Inteligencji</h2>
             <div className={styles.testimonialsGrid}>
                 {testimonials.map((testimonial, index) => (
                     <div key={index} className={styles.card}>
