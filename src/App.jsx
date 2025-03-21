@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Manual from './components/Manual/Manual';
+import CTA from './components/CTA/CTA';
 import FAQ from './components/FAQ/FAQ';
 import Testimonials from './components/Testimonials/Testimonials';
 import Footer from './components/Footer/Footer';
@@ -24,6 +25,7 @@ function App() {
                         <>
                             <Hero />
                             <Manual />
+                            <CTA />
                             <FAQ />
                             <Testimonials />
                             <Footer />
@@ -37,4 +39,4 @@ function App() {
     );
 }
 
-export default App;
+export default App

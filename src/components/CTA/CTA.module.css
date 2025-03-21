@@ -1,0 +1,92 @@
+.ctaSection {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(10, 17, 40, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: fadeInStep 0.6s ease-out forwards;
+    animation-delay: 1s;
+    border: 1px solid rgba(123, 158, 249, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ctaSection::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, 
+      rgba(87, 108, 188, 0.1),
+      transparent,
+      rgba(87, 108, 188, 0.1));
+    animation: shine 3s infinite;
+  }
+  
+  .ctaText {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .ctaButton {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-text);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(123, 158, 249, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ctaButton::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+  }
+  
+  .ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(123, 158, 249, 0.4);
+  }
+  
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: rotate(45deg) translateY(-100%); }
+    100% { transform: rotate(45deg) translateY(100%); }
+  }
+  
+  @media (max-width: 768px) {
+    .ctaSection {
+      margin-top: 3rem;
+      padding: 1.5rem;
+    }
+  
+    .ctaText {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+  
+    .ctaButton {
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+    }
+  }

@@ -1,105 +1,246 @@
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 1rem;
-}
-
-.modalContent {
+.manual {
+    padding: 6rem 2rem;
     background: linear-gradient(135deg, var(--color-dark) 0%, rgba(10, 17, 40, 0.95) 100%);
-    padding: 3rem;
-    border-radius: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    width: 100%;
-    max-width: 800px;
     position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: fadeIn 0.3s ease-in-out;
-    border: 1px solid rgba(123, 158, 249, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.closeButton {
+    overflow: hidden;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .manual h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .timeline::before {
+    content: '';
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: rgba(123, 158, 249, 0.1);
-    border: 1px solid var(--color-primary);
+    left: 29px;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, 
+      var(--color-primary) 0%,
+      var(--color-accent) 50%,
+      var(--color-primary) 100%);
+    border-radius: 2px;
+    opacity: 0.3;
+  }
+  
+  .step {
+    position: relative;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeInStep 0.6s ease-out forwards;
+  }
+  
+  .step::before {
+    content: '';
+    position: absolute;
+    left: 26px;
+    top: 30px;
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
     border-radius: 50%;
-    color: var(--color-text);
-    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 0 20px var(--color-primary);
+    animation: pulse 2s infinite;
+  }
+  
+  .stepContent {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: rgba(10, 17, 40, 0.6);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(123, 158, 249, 0.1);
+    transition: all 0.3s ease;
+    margin-left: 50px;
+  }
+  
+  .stepContent:hover {
+    transform: translateY(-5px) translateX(10px);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 40px rgba(123, 158, 249, 0.2);
+  }
+  
+  .iconContainer {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    padding: 0;
-    line-height: 1;
+    font-size: 1.5rem;
+    color: var(--color-text);
+    box-shadow: 0 4px 15px rgba(123, 158, 249, 0.3);
+    position: relative;
     z-index: 2;
-}
-
-.closeButton:hover {
-    background: var(--color-primary);
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(123, 158, 249, 0.3);
-}
-
-/* Custom scrollbar for modal content */
-.modalContent::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modalContent::-webkit-scrollbar-track {
-    background: rgba(10, 17, 40, 0.6);
-    border-radius: 4px;
-}
-
-.modalContent::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 4px;
-}
-
-.modalContent::-webkit-scrollbar-thumb:hover {
-    background: var(--color-hover);
-}
-
-@media (max-width: 768px) {
-    .modalOverlay {
-        padding: 0.5rem;
-    }
-
-    .modalContent {
-        padding: 2rem;
-        max-height: 95vh;
-        border-radius: 20px;
-    }
-
-    .closeButton {
-        top: 1rem;
-        right: 1rem;
-        width: 2rem;
-        height: 2rem;
-        font-size: 1rem;
-    }
-}
-
-@keyframes fadeIn {
+  }
+  
+  .iconContainer::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ripple 2s infinite;
+  }
+  
+  .stepInfo {
+    padding-right: 2rem;
+  }
+  
+  .stepInfo h3 {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stepInfo p {
+    color: var(--color-text);
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  
+  .imageContainer {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .imageContainer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(87, 108, 188, 0.2), transparent);
+    z-index: 1;
+  }
+  
+  .imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .imageContainer:hover img {
+    transform: scale(1.05);
+  }
+  
+  .connector {
+    display: none;
+  }
+  
+  .step:nth-child(1) { animation-delay: 0.2s; }
+  .step:nth-child(2) { animation-delay: 0.4s; }
+  .step:nth-child(3) { animation-delay: 0.6s; }
+  .step:nth-child(4) { animation-delay: 0.8s; }
+  
+  @keyframes fadeInStep {
     from {
-        opacity: 0;
-        transform: scale(0.95) translateY(-10px);
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(87, 108, 188, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(87, 108, 188, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(87, 108, 188, 0); }
+  }
+  
+  @keyframes ripple {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  
+  @media (max-width: 1024px) {
+    .stepContent {
+      grid-template-columns: auto 1fr;
+      margin-left: 40px;
+    }
+  
+    .imageContainer {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+    }
+  
+    .timeline::before {
+      left: 24px;
+    }
+  
+    .step::before {
+      left: 21px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .manual {
+      padding: 4rem 1rem;
+    }
+  
+    .manual h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+  
+    .stepContent {
+      padding: 1.5rem;
+      gap: 1rem;
+      margin-left: 30px;
+    }
+  
+    .iconContainer {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+  
+    .stepInfo h3 {
+      font-size: 1.2rem;
+    }
+  
+    .stepInfo p {
+      font-size: 0.9rem;
+    }
+  
+    .timeline::before {
+      left: 19px;
+      width: 3px;
+    }
+  
+    .step::before {
+      left: 16px;
+      width: 8px;
+      height: 8px;
+    }
+  }
