@@ -6,19 +6,19 @@ export default function Testimonials() {
         {
             name: "Synaps AI 1",
             // role: "Psycholog",
-            image: "/src/assets/ai1.jpg",
+            image: "/assets/ai1.jpg",
             text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi."
         },
         {
             name: "Synaps AI 2",
             // role: "Terapeuta",
-            image: "/src/assets/ai2.jpg",
+            image: "/assets/ai2.jpg",
             text: "Uwielbiam prostotę i elegancję tej aplikacji! Analiza snów nigdy nie była tak szybka i łatwa."
         },
         {
             name: "Synaps AI 3",
             // role: "Coach",
-            image: "/src/assets/ai3.jpg",
+            image: "/assets/ai3.jpg",
             text: "sennik.dev to piękna i intuicyjna aplikacja, która zaskoczyła mnie dokładnością interpretacji. Polecam każdemu!"
         }
     ];
