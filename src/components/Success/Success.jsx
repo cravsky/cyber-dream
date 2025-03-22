@@ -11,8 +11,9 @@ export default function Success() {
     }, []);
 
     const fetchInterpretation = async () => {
-        // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
-        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://api.sennik.dev';
+        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+        // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://sennik.up.railway.app';
+
 
         const storedText = localStorage.getItem("text");
         const storedAdditional = localStorage.getItem("additional");

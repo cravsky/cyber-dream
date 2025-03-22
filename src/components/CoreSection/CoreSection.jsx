@@ -10,7 +10,9 @@ export default function CoreSection({ loading }) {
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
 
-        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://api.sennik.dev';
+        // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://sennik.up.railway.app';
+        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
 
         try {
             const response = await fetch(`${BACKEND_URL}/api/payment/create-checkout-session`, {
