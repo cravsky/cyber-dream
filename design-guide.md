@@ -1,4 +1,4 @@
-# Cyber Dream Style Guide
+# sennik.dev Style Guide
 
 ## 1. Typography
 - **Font Family:** Poppins (Sans-serif)
