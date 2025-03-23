@@ -1,55 +1,47 @@
 import React from 'react';
+import { FaPencilAlt, FaCreditCard, FaBrain, FaFileAlt } from 'react-icons/fa';
 import styles from './Manual.module.css';
-import { FaPencilAlt, FaCreditCard, FaBrain, FaFileDownload } from 'react-icons/fa';
 
 export default function Manual() {
   const steps = [
     {
       icon: <FaPencilAlt />,
-      title: "Wprowadź opis snu",
-      description: "Opisz swój sen i dodaj kontekst, który pomoże w interpretacji.",
-      image: "https://images.unsplash.com/photo-1517837125937-53bd402f49d6?auto=format&fit=crop&w=800&q=80"
+      title: "Opisz swój sen",
+      description: "Podziel się swoim snem w szczegółowy sposób. Im więcej detali, tym dokładniejsza będzie interpretacja."
     },
     {
       icon: <FaCreditCard />,
       title: "Dokonaj płatności",
-      description: "Szybka i bezpieczna płatność online.",
-      image: "https://images.unsplash.com/photo-1623118176012-9b0c6fa0712d?auto=format&fit=crop&w=800&q=80"
+      description: "Bezpieczna płatność online poprzez Stripe. Twoje dane są w pełni chronione."
     },
     {
       icon: <FaBrain />,
-      title: "AI dokona inteligentnej interpretacji snu",
-      description: "Zaawansowana sztuczna inteligencja analizuje znaczenie Twojego snu.",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+      title: "Analiza AI",
+      description: "Zaawansowana sztuczna inteligencja analizuje symbolikę i kontekst Twojego snu."
     },
     {
-      icon: <FaFileDownload />,
-      title: "Otrzymaj wynik",
-      description: "Rezultat wyświetli się na stronie i będzie do pobrania w formacie pdf.",
-      image: "https://images.unsplash.com/photo-1544032527-042957c10e40?auto=format&fit=crop&w=800&q=80"
+      icon: <FaFileAlt />,
+      title: "Otrzymaj interpretację",
+      description: "Otrzymasz szczegółową interpretację snu wraz z wyjaśnieniem znaczenia poszczególnych symboli."
     }
   ];
 
   return (
-    <section id="manual" className={styles.manual}>
-      <div className={styles.container}>
+    <section className={`${styles.container} manual`}>
+      <div className={styles.content}>
         <h2>Jak to działa?</h2>
         <div className={styles.timeline}>
           {steps.map((step, index) => (
             <div key={index} className={styles.step}>
               <div className={styles.stepContent}>
-                <div className={styles.iconContainer}>
-                  {step.icon}
-                </div>
-                <div className={styles.stepInfo}>
+                <div className={styles.header}>
+                  <div className={styles.iconContainer}>
+                    {step.icon}
+                  </div>
                   <h3>{step.title}</h3>
-                  <p>{step.description}</p>
                 </div>
-                <div className={styles.imageContainer}>
-                  <img src={step.image} alt={step.title} />
-                </div>
+                <p>{step.description}</p>
               </div>
-              {index < steps.length - 1 && <div className={styles.connector} />}
             </div>
           ))}
         </div>

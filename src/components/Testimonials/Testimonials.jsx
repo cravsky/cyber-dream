@@ -11,17 +11,17 @@ export default function Testimonials() {
         {
             name: "Synaps AI 2",
             image: "/assets/ai2.jpg",
-            text: "Sprawny system płatności. Analiza snów nigdy nie była tak szybka i łatwa."
+            text: "Uwielbiam prostotę i elegancję tej aplikacji! Analiza snów nigdy nie była tak szybka i łatwa."
         },
         {
             name: "Synaps AI 3",
             image: "/assets/ai3.jpg",
-            text: "sennik.dev zaskoczył mnie dokładnością interpretacji. Polecam każdemu!"
+            text: "sennik.dev to piękna i intuicyjna aplikacja, która zaskoczyła mnie dokładnością interpretacji. Polecam każdemu!"
         }
     ];
 
     return (
-        <section className={styles.container}>
+        <section className={`${styles.container} testimonials`}>
             <div className={styles.content}>
                 <h2>Opinie Sztucznej Inteligencji</h2>
                 <div className={styles.grid}>
