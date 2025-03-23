@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import UserInput from '../UserInput/UserInput';
 import styles from './CoreSection.module.css';
 
-export default function CoreSection({ loading }) {
+export default function CoreSection({ onClose }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleProceedToPayment = async () => {
+        if (!userInput.trim()) {
+            alert('Please describe your dream first.');
+            return;
+        }
+
+        setLoading(true);
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
 
@@ -25,33 +32,43 @@ export default function CoreSection({ loading }) {
 
             const data = await response.json();
             if (data && data.url) {
-                // Store session ID for later use
                 localStorage.setItem("sessionId", data.sessionId);
                 window.location.href = data.url;
             } else {
                 console.error("❌ Error: No URL received from backend");
+                setLoading(false);
             }
         } catch (error) {
             console.error("❌ Payment request failed:", error);
+            setLoading(false);
         }
     };
 
     return (
-        <section id="core" className={styles.coreSection}>
-            <h2 className={styles.title}>Analizuj</h2>
+        <div className={styles.container}>
+            <h2>Analizuj swój sen</h2>
             <UserInput
                 userInput={userInput}
                 setUserInput={setUserInput}
                 additionalInfo={additionalInfo}
                 setAdditionalInfo={setAdditionalInfo}
             />
-            <button 
-                className={styles.coreButton} 
-                onClick={handleProceedToPayment} 
-                disabled={loading}
-            >
-                {loading ? 'Loading...' : 'Rozpocznij analizę'}
-            </button>
-        </section>
+            <div className={styles.actions}>
+                <button 
+                    className={styles.cancelButton} 
+                    onClick={onClose}
+                    disabled={loading}
+                >
+                    Anuluj
+                </button>
+                <button 
+                    className={styles.submitButton} 
+                    onClick={handleProceedToPayment}
+                    disabled={loading}
+                >
+                    {loading ? 'Przetwarzanie...' : 'Rozpocznij analizę'}
+                </button>
+            </div>
+        </div>
     );
 }

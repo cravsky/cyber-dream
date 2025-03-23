@@ -1,34 +1,26 @@
-.coreContainer {
+.container {
   width: 100%;
-  padding: 1.5rem;
-  background: rgba(10, 17, 40, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(123, 158, 249, 0.1);
-  box-sizing: border-box;
 }
 
-.coreLabel {
+.label {
   display: block;
-  text-align: left;
   margin-bottom: 1.5rem;
 }
 
-.coreLabel:last-child {
+.label:last-child {
   margin-bottom: 0;
 }
 
-.coreLabel span {
+.label span {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--color-primary);
   letter-spacing: 0.5px;
 }
 
-.coreTextarea {
+.textarea {
   width: 100%;
   background: rgba(10, 17, 40, 0.8);
   color: var(--color-text);
@@ -40,49 +32,44 @@
   resize: vertical;
   transition: all 0.3s ease;
   min-height: 120px;
-  box-sizing: border-box;
 }
 
-.coreLabel:first-child .coreTextarea {
-  height: 300px;
+.label:first-child .textarea {
+  height: 250px;
   min-height: 200px;
 }
 
-.coreLabel:last-child .coreTextarea {
+.label:last-child .textarea {
   height: 120px;
   min-height: 80px;
 }
 
-.coreTextarea:focus {
+.textarea:focus {
   outline: none;
   border-color: var(--color-hover);
   box-shadow: 0 0 20px rgba(123, 158, 249, 0.2);
 }
 
-.coreTextarea::placeholder {
+.textarea::placeholder {
   color: rgba(183, 198, 255, 0.5);
 }
 
 @media (max-width: 768px) {
-  .coreContainer {
+  .label span {
+    font-size: 1rem;
+  }
+
+  .textarea {
     padding: 1rem;
-  }
-
-  .coreLabel span {
     font-size: 1rem;
   }
 
-  .coreTextarea {
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-
-  .coreLabel:first-child .coreTextarea {
+  .label:first-child .textarea {
     height: 200px;
     min-height: 150px;
   }
 
-  .coreLabel:last-child .coreTextarea {
+  .label:last-child .textarea {
     height: 100px;
     min-height: 60px;
   }

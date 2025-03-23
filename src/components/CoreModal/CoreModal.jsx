@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { createPortal } from 'react-dom';
 import CoreSection from '../CoreSection/CoreSection';
 import styles from './CoreModal.module.css';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
 export default function CoreModal({ onClose }) {
-  // Prevent body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -15,7 +11,6 @@ export default function CoreModal({ onClose }) {
     };
   }, []);
 
-  // Close modal on escape key
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
@@ -29,9 +24,9 @@ export default function CoreModal({ onClose }) {
     };
   }, [onClose]);
 
-  return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+  return createPortal(
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <button 
           className={styles.closeButton} 
           onClick={onClose}
@@ -39,10 +34,9 @@ export default function CoreModal({ onClose }) {
         >
           ✖
         </button>
-        <Elements stripe={stripePromise}>
-          <CoreSection />
-        </Elements>
+        <CoreSection onClose={onClose} />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

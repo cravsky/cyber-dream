@@ -42,15 +42,15 @@ export default function Success() {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <h2>Payment Successful!</h2>
+                <h2>Płatność zakończona powodzeniem</h2>
                 <div className={styles.interpretationBox}>
-                    <h3>Your Dream Interpretation</h3>
+                    <h3>Twoja analiza snu</h3>
                     {interpretation ? (
                         <p className={styles.interpretation}>{interpretation}</p>
                     ) : (
                         <div className={styles.loading}>
                             <div className={styles.spinner}></div>
-                            <p>Analyzing your dream...</p>
+                            <p>Analiza w trakcie...</p>
                         </div>
                     )}
                 </div>
@@ -58,7 +58,7 @@ export default function Success() {
                     className={styles.button} 
                     onClick={() => navigate('/')}
                 >
-                    Return Home
+                    Strona Główna
                 </button>
             </div>
         </div>
