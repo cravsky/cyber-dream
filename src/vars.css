@@ -1,11 +1,17 @@
 :root {
-    /* Colors */
-    --color-text: #fff;
-    --color-primary: #576cbc;
-    --color-secondary: #19376d;
-    --color-dark: #0b2447;
-    --color-bg: #04152d;
+  /* Color Scheme - Night Sky Inspired */
+  --color-text: #F8F9FA;
+  --color-primary: #7B9EF9;
+  --color-secondary: #1A237E;
+  --color-dark: #0A1128;
+  --color-bg: #121B3B;
+  --color-accent: #B7C6FF;
+  --color-hover: #5C7CFA;
+  --color-stars: #FFFFFF;
   
-    /* Fonts */
-    --font-roboto: "Roboto";
-  }
+  /* Font Settings */
+  --font-main: 'Quicksand', sans-serif;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+}

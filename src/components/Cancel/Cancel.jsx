@@ -6,10 +6,12 @@ export default function Cancel() {
     const navigate = useNavigate();
 
     return (
-        <div className={styles.cancelContainer}>
-            <h2>Payment Canceled</h2>
-            <p>Your payment was canceled. You can try again or return to the home page.</p>
-            <button className={styles.cancelButton} onClick={() => navigate('/')}>Go Back Home</button>
+        <div className={styles.container}>
+            <div className={styles.content}>
+                <h2>Płatność anulowana</h2>
+                <p>Twoja płatność została anulowana.</p>
+                <button onClick={() => navigate('/')}>Strona Główna</button>
+            </div>
         </div>
     );
 }

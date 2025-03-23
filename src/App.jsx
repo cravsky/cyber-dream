@@ -11,32 +11,34 @@ import Testimonials from './components/Testimonials/Testimonials';
 import Footer from './components/Footer/Footer';
 import Cancel from './components/Cancel/Cancel';
 import Success from './components/Success/Success';
-import './App.css';
+import styles from './App.module.css';
+import './styles/globals.css';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function App() {
     return (
         <Router>
-            <div className="app-background">
+            <div className={styles.background}>
                 <Navbar />
-                <Routes>
-                    <Route path="/" element={
-                        <>
-                            <Hero />
-                            <Manual />
-                            <CTA />
-                            {/* <FAQ /> */}
-                            <Testimonials />
-                            <Footer />
-                        </>
-                    } />
-                    <Route path="/cancel" element={<Cancel />} />
-                    <Route path="/success" element={<Success />} />
-                </Routes>
+                <div className={styles.root}>
+                    <Routes>
+                        <Route path="/" element={
+                            <>
+                                <Hero />
+                                <Manual />
+                                <CTA />
+                                <Testimonials />
+                                <Footer />
+                            </>
+                        } />
+                        <Route path="/cancel" element={<Cancel />} />
+                        <Route path="/success" element={<Success />} />
+                    </Routes>
+                </div>
             </div>
         </Router>
     );
 }
 
-export default App
+export default App;
