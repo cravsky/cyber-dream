@@ -17,7 +17,6 @@ html, body {
 
 body {
   font-family: var(--font-main);
-  background: linear-gradient(135deg, var(--color-dark), var(--color-bg));
   color: var(--color-text);
   min-height: 100vh;
   margin: 0;
@@ -83,7 +82,7 @@ input:focus, textarea:focus {
 
 /* Section styles */
 section {
-  margin: 4rem auto;
+  margin: 4rem 0;
   padding: 2rem;
   border-radius: 30px;
   background: rgba(26, 35, 126, 0.1);
@@ -91,7 +90,6 @@ section {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   animation: fadeIn 1s ease-out;
   width: 100%;
-  max-width: 100%;
 }
 
 /* Scrollbar styles */
@@ -133,7 +131,7 @@ section {
 /* Responsive styles */
 @media (max-width: 768px) {
   section {
-    margin: 2rem auto;
+    margin: 2rem 0;
     padding: 1.5rem;
   }
 
