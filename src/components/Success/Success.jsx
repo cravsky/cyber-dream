@@ -12,8 +12,6 @@ export default function Success() {
 
     const fetchInterpretation = async () => {
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
-        // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://sennik.up.railway.app';
-
 
         const storedText = localStorage.getItem("text");
         const storedAdditional = localStorage.getItem("additional");
@@ -42,11 +40,27 @@ export default function Success() {
     };
 
     return (
-        <div className={styles.successContainer}>
-            <h2>Payment Successful!</h2>
-            <p>Your dream interpretation:</p>
-            <p>{interpretation || 'Fetching interpretation...'}</p>
-            <button className={styles.successButton} onClick={() => navigate('/')}>Go Back Home</button>
+        <div className={styles.container}>
+            <div className={styles.content}>
+                <h2>Płatność zakończona powodzeniem</h2>
+                <div className={styles.interpretationBox}>
+                    <h3>Twoja analiza snu</h3>
+                    {interpretation ? (
+                        <p className={styles.interpretation}>{interpretation}</p>
+                    ) : (
+                        <div className={styles.loading}>
+                            <div className={styles.spinner}></div>
+                            <p>Analiza w trakcie...</p>
+                        </div>
+                    )}
+                </div>
+                <button 
+                    className={styles.button} 
+                    onClick={() => navigate('/')}
+                >
+                    Strona Główna
+                </button>
+            </div>
         </div>
     );
 }

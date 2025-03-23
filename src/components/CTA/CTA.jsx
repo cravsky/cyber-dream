@@ -6,12 +6,17 @@ export default function CTA() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className={styles.ctaSection}>
-      <p className={styles.ctaText}>Odkryj ukryte znaczenie swoich snów już teraz!</p>
-      <button className={styles.ctaButton} onClick={() => setIsModalOpen(true)}>
-        Analizuj Sen
-      </button>
+    <section className={styles.container}>
+      <div className={styles.content}>
+        <p className={styles.text}>Odkryj ukryte znaczenie swoich snów już teraz!</p>
+        <button 
+          className={styles.button} 
+          onClick={() => setIsModalOpen(true)}
+        >
+          Analizuj Sen
+        </button>
+      </div>
       {isModalOpen && <CoreModal onClose={() => setIsModalOpen(false)} />}
-    </div>
+    </section>
   );
 }

@@ -1,35 +1,39 @@
-.manual {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--color-dark) 0%, rgba(10, 17, 40, 0.95) 100%);
+.container {
   position: relative;
   overflow: hidden;
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(123, 158, 249, 0.1);
+  margin: 6rem 0;
 }
 
-.container {
-  max-width: 1200px;
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 4rem 2rem;
 }
 
-.manual h2 {
+.content h2 {
   font-size: 2.5rem;
-  color: var(--color-primary);
   text-align: center;
   margin-bottom: 4rem;
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
 }
 
 .timeline {
   position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
+  padding-left: 3rem;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 29px;
+  left: 0;
   top: 0;
   height: 100%;
   width: 4px;
@@ -43,18 +47,22 @@
 
 .step {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   opacity: 0;
   animation: fadeInStep 0.6s ease-out forwards;
+}
+
+.step:last-child {
+  margin-bottom: 0;
 }
 
 .step::before {
   content: '';
   position: absolute;
-  left: 26px;
-  top: 30px;
-  width: 10px;
-  height: 10px;
+  left: -3rem;
+  top: 1.5rem;
+  width: 12px;
+  height: 12px;
   background: var(--color-primary);
   border-radius: 50%;
   z-index: 2;
@@ -63,195 +71,52 @@
 }
 
 .stepContent {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  background: rgba(10, 17, 40, 0.6);
+  background: rgba(10, 17, 40, 0.8);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(123, 158, 249, 0.1);
   transition: all 0.3s ease;
-  margin-left: 50px;
 }
 
 .stepContent:hover {
-  transform: translateY(-5px) translateX(10px);
+  transform: translateX(10px);
   border-color: var(--color-primary);
-  box-shadow: 0 12px 40px rgba(123, 158, 249, 0.2);
+  box-shadow: 0 8px 32px rgba(123, 158, 249, 0.2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .iconContainer {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--color-text);
-  box-shadow: 0 4px 15px rgba(123, 158, 249, 0.3);
-  position: relative;
-  z-index: 2;
+  flex-shrink: 0;
 }
 
-.iconContainer::after {
-  content: '';
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border: 2px solid var(--color-primary);
-  border-radius: 50%;
-  opacity: 0;
-  animation: ripple 2s infinite;
-}
-
-.stepInfo {
-  padding-right: 2rem;
-}
-
-.stepInfo h3 {
+.header h3 {
   font-size: 1.4rem;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
-.stepInfo p {
+.stepContent p {
   color: var(--color-text);
-  opacity: 0.9;
+  font-size: 1.1rem;
   line-height: 1.6;
-}
-
-.imageContainer {
-  width: 100%;
-  height: 200px;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-}
-
-.imageContainer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, rgba(87, 108, 188, 0.2), transparent);
-  z-index: 1;
-}
-
-.imageContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.imageContainer:hover img {
-  transform: scale(1.05);
-}
-
-.connector {
-  display: none; /* Removed in favor of timeline::before */
-}
-
-.ctaSection {
-  text-align: center;
-  margin-top: 4rem;
-  padding: 2rem;
-  background: rgba(10, 17, 40, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  animation: fadeInStep 0.6s ease-out forwards;
-  animation-delay: 1s;
-  border: 1px solid rgba(123, 158, 249, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.ctaSection::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, 
-    rgba(87, 108, 188, 0.1),
-    transparent,
-    rgba(87, 108, 188, 0.1));
-  animation: shine 3s infinite;
-}
-
-.ctaText {
-  font-size: 1.5rem;
-  color: var(--color-text);
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.ctaButton {
-  padding: 1rem 3rem;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-text);
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(123, 158, 249, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.ctaButton::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-  transform: rotate(45deg);
-  animation: shimmer 3s infinite;
-}
-
-.ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(123, 158, 249, 0.4);
-}
-
-@keyframes fadeInStep {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(87, 108, 188, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(87, 108, 188, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(87, 108, 188, 0); }
-}
-
-@keyframes ripple {
-  0% { transform: scale(1); opacity: 0.4; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes shimmer {
-  0% { transform: rotate(45deg) translateY(-100%); }
-  100% { transform: rotate(45deg) translateY(100%); }
+  opacity: 0.9;
+  margin-left: calc(40px + 1rem);
 }
 
 .step:nth-child(1) { animation-delay: 0.2s; }
@@ -259,79 +124,63 @@
 .step:nth-child(3) { animation-delay: 0.6s; }
 .step:nth-child(4) { animation-delay: 0.8s; }
 
-@media (max-width: 1024px) {
-  .stepContent {
-    grid-template-columns: auto 1fr;
-    margin-left: 40px;
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-
-  .imageContainer {
-    grid-column: 1 / -1;
-    margin-top: 1rem;
-  }
-
-  .timeline::before {
-    left: 24px;
-  }
-
-  .step::before {
-    left: 21px;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(123, 158, 249, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(123, 158, 249, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(123, 158, 249, 0); }
+}
+
 @media (max-width: 768px) {
-  .manual {
-    padding: 4rem 1rem;
+  .container {
+    margin: 4rem 0;
   }
 
-  .manual h2 {
+  .content {
+    padding: 3rem 1.5rem;
+  }
+
+  .content h2 {
     font-size: 2rem;
     margin-bottom: 3rem;
   }
 
-  .stepContent {
-    padding: 1.5rem;
-    gap: 1rem;
-    margin-left: 30px;
-  }
-
-  .iconContainer {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-  }
-
-  .stepInfo h3 {
-    font-size: 1.2rem;
-  }
-
-  .stepInfo p {
-    font-size: 0.9rem;
-  }
-
-  .timeline::before {
-    left: 19px;
-    width: 3px;
+  .timeline {
+    padding-left: 2.5rem;
   }
 
   .step::before {
-    left: 16px;
-    width: 8px;
-    height: 8px;
+    left: -2.5rem;
+    width: 10px;
+    height: 10px;
   }
 
-  .ctaSection {
-    margin-top: 3rem;
+  .stepContent {
     padding: 1.5rem;
   }
 
-  .ctaText {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+  .iconContainer {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
 
-  .ctaButton {
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
+  .header h3 {
+    font-size: 1.2rem;
+  }
+
+  .stepContent p {
+    font-size: 1rem;
+    margin-left: calc(32px + 1rem);
   }
 }

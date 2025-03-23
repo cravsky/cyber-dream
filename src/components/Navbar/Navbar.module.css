@@ -1,218 +1,182 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: rgba(10, 17, 40, 0.8);
   backdrop-filter: blur(15px);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-radius: 0 0 30px 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(123, 158, 249, 0.1);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .logo {
   font-size: 2rem;
   font-weight: 700;
+  text-decoration: none;
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
-  z-index: 1001;
 }
 
-.rightSection {
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--transition-speed) ease;
+}
+
+.nav button:hover {
+  color: var(--color-primary);
+  transform: none;
+  box-shadow: none;
+}
+
+.nav button svg {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.mobileControls {
   display: none;
   align-items: center;
   gap: 1rem;
 }
 
-.mobileAnalyzeButton {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-text);
-  border: none;
+.analyzeButton {
   width: 40px;
   height: 40px;
+  padding: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 1001;
 }
 
-.mobileAnalyzeButton:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(123, 158, 249, 0.3);
-}
-
-.navLinks {
-  list-style: none;
-  display: flex;
-  gap: 2.5rem;
-  margin: 0;
+.menuButton {
+  width: 40px;
+  height: 40px;
   padding: 0;
-  align-items: center;
-}
-
-.navLinks li a {
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.1rem;
-  position: relative;
-  padding: 0.5rem 0;
-  transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.navIcon {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  transition: color 0.3s ease;
-}
-
-.navLinks li a:hover .navIcon {
-  color: var(--color-accent);
-}
-
-.navLinks li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: -2px;
-  left: 0;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-.navLinks li a:hover {
-  color: var(--color-primary);
-}
-
-.navLinks li a:hover::after {
-  width: 100%;
-}
-
-.analizujButton {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-text);
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 20px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  border: none;
-}
-
-.analizujButton:hover {
-  background: var(--color-secondary);
-  transform: scale(1.05);
-}
-
-.hamburger {
-  display: none;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0;
-  width: 30px;
-  height: 24px;
   position: relative;
-  z-index: 1001;
+  cursor: pointer;
 }
 
-.hamburgerLine {
+.menuIcon {
   display: block;
-  width: 30px;
+  width: 24px;
   height: 2px;
   background: var(--color-primary);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
-.hamburgerLine::before,
-.hamburgerLine::after {
+.menuIcon::before,
+.menuIcon::after {
   content: '';
   position: absolute;
-  width: 30px;
+  width: 24px;
   height: 2px;
   background: var(--color-primary);
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
-.hamburgerLine::before {
+.menuIcon::before {
   top: -8px;
 }
 
-.hamburgerLine::after {
+.menuIcon::after {
   bottom: -8px;
 }
 
-.hamburgerLine.active {
+.menuIcon.active {
   background: transparent;
 }
 
-.hamburgerLine.active::before {
-  transform: rotate(45deg);
+.menuIcon.active::before {
   top: 0;
+  transform: rotate(45deg);
 }
 
-.hamburgerLine.active::after {
-  transform: rotate(-45deg);
+.menuIcon.active::after {
   bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.desktopAnalyzeButton {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
-  .rightSection {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .navLinks {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: rgba(10, 17, 40, 0.95);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
-    transition: right 0.3s ease;
-    z-index: 1000;
-  }
-
-  .navLinks.active {
-    right: 0;
-  }
-
-  .navLinks li a {
-    font-size: 1.3rem;
-    padding: 1rem 0;
-  }
-
-  .navIcon {
-    font-size: 1.4rem;
-  }
-
-  .desktopOnly {
-    display: none;
+  .content {
+    padding: 1rem;
   }
 
   .logo {
     font-size: 1.5rem;
+  }
+
+  .mobileControls {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 17, 40, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+  }
+
+  .nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav button {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .desktopAnalyzeButton {
+    display: none;
   }
 }
