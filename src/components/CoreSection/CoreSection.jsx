@@ -10,9 +10,7 @@ export default function CoreSection({ loading }) {
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
 
-        // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://sennik.up.railway.app';
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
-
 
         try {
             const response = await fetch(`${BACKEND_URL}/api/payment/create-checkout-session`, {
@@ -27,6 +25,8 @@ export default function CoreSection({ loading }) {
 
             const data = await response.json();
             if (data && data.url) {
+                // Store session ID for later use
+                localStorage.setItem("sessionId", data.sessionId);
                 window.location.href = data.url;
             } else {
                 console.error("❌ Error: No URL received from backend");
