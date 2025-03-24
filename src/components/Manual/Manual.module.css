@@ -76,6 +76,7 @@
   border-radius: 20px;
   border: 1px solid rgba(123, 158, 249, 0.1);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .stepContent:hover {
@@ -111,12 +112,46 @@
   margin: 0;
 }
 
+.infoIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  padding: 8px;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoIcon:hover {
+  color: var(--color-accent);
+  transform: scale(1.1);
+  box-shadow: none;
+}
+
 .stepContent p {
   color: var(--color-text);
   font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.9;
-  margin-top: 1rem;
+  margin: 0;
+  padding-right: 2rem;
+}
+
+.tooltip {
+  max-width: 300px !important;
+  background-color: rgba(10, 17, 40, 0.95) !important;
+  border: 1px solid var(--color-primary) !important;
+  padding: 1rem !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  z-index: 1000 !important;
 }
 
 .step:nth-child(1) { animation-delay: 0.2s; }
@@ -166,7 +201,13 @@
   }
 
   .stepContent {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .iconContainer {
@@ -179,9 +220,21 @@
     font-size: 1.2rem;
   }
 
+  .infoIcon {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.1rem;
+    padding: 6px;
+  }
+
   .stepContent p {
     font-size: 1rem;
-    margin-left: 0;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
+    padding-right: 1.5rem;
+  }
+
+  .tooltip {
+    max-width: 250px !important;
+    font-size: 0.9rem !important;
   }
 }
