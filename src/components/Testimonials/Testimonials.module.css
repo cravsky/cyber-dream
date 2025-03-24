@@ -118,7 +118,7 @@
     }
 
     .content {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1rem;
     }
 
     .content h2 {
@@ -127,11 +127,15 @@
     }
 
     .grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 2rem auto 0;
         gap: 2rem;
     }
 
     .card {
         padding: 2rem 1.5rem;
+        width: 100%;
     }
 
     .imageWrapper {

@@ -116,7 +116,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.9;
-  margin-left: calc(40px + 1rem);
+  margin-top: 1rem;
 }
 
 .step:nth-child(1) { animation-delay: 0.2s; }
@@ -147,7 +147,7 @@
   }
 
   .content {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
   }
 
   .content h2 {
@@ -156,11 +156,11 @@
   }
 
   .timeline {
-    padding-left: 2.5rem;
+    padding-left: 2rem;
   }
 
   .step::before {
-    left: -2.5rem;
+    left: -2rem;
     width: 10px;
     height: 10px;
   }
@@ -181,6 +181,7 @@
 
   .stepContent p {
     font-size: 1rem;
-    margin-left: calc(32px + 1rem);
+    margin-left: 0;
+    margin-top: 1rem;
   }
 }
