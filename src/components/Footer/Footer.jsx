@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -7,9 +8,9 @@ export default function Footer() {
       <div className={styles.content}>
         <p className={styles.copyright}>&copy; 2025 sennik.dev</p>
         <nav className={styles.links}>
-          <a href="/privacy">Privacy Policy</a>
+          <Link to="/terms">Regulamin</Link>
           <span className={styles.divider}>|</span>
-          <a href="/terms">Terms & Conditions</a>
+          <Link to="/privacy">Polityka Prywatności</Link>
         </nav>
       </div>
     </footer>
