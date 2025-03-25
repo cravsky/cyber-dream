@@ -18,10 +18,21 @@
   gap: 1rem;
 }
 
-.copyright {
+.info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.copyright, .version {
   color: var(--color-text);
   opacity: 0.8;
   font-size: 1.1rem;
+}
+
+.version {
+  font-family: monospace;
+  color: var(--color-primary);
 }
 
 .links {
@@ -52,7 +63,11 @@
     gap: 0.8rem;
   }
 
-  .copyright {
+  .info {
+    gap: 0.8rem;
+  }
+
+  .copyright, .version {
     font-size: 1rem;
   }
 
