@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import UserInput from '../UserInput/UserInput';
 import styles from './CoreSection.module.css';
 
@@ -6,8 +7,15 @@ export default function CoreSection({ onClose }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
     const [loading, setLoading] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [showTermsError, setShowTermsError] = useState(false);
 
     const handleProceedToPayment = async () => {
+        if (!termsAccepted) {
+            setShowTermsError(true);
+            return;
+        }
+
         if (!userInput.trim()) {
             alert('Please describe your dream first.');
             return;
@@ -44,6 +52,13 @@ export default function CoreSection({ onClose }) {
         }
     };
 
+    const handleTermsChange = (e) => {
+        setTermsAccepted(e.target.checked);
+        if (e.target.checked) {
+            setShowTermsError(false);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <h2>Analizuj swój sen</h2>
@@ -53,6 +68,19 @@ export default function CoreSection({ onClose }) {
                 additionalInfo={additionalInfo}
                 setAdditionalInfo={setAdditionalInfo}
             />
+            <div className={styles.termsContainer}>
+                <label className={`${styles.termsLabel} ${showTermsError ? styles.error : ''}`}>
+                    <input
+                        type="checkbox"
+                        checked={termsAccepted}
+                        onChange={handleTermsChange}
+                        className={styles.checkbox}
+                    />
+                    <span>
+                        Oświadczam, że zapoznałem się z <Link to="/terms" target="_blank">Regulaminem</Link> i <Link to="/privacy" target="_blank">Polityką Prywatności</Link>
+                    </span>
+                </label>
+            </div>
             <div className={styles.actions}>
                 <button 
                     className={styles.cancelButton} 
