@@ -6,24 +6,41 @@ import styles from './CoreSection.module.css';
 export default function CoreSection({ onClose }) {
     const [userInput, setUserInput] = useState('');
     const [additionalInfo, setAdditionalInfo] = useState('');
+    const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [showTermsError, setShowTermsError] = useState(false);
+    const [showEmailError, setShowEmailError] = useState(false);
+    const [showDreamError, setShowDreamError] = useState(false);
+
+    const validateEmail = (email) => {
+        return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    };
 
     const handleProceedToPayment = async () => {
+        let hasError = false;
+
         if (!termsAccepted) {
             setShowTermsError(true);
-            return;
+            hasError = true;
+        }
+
+        if (!email || !validateEmail(email)) {
+            setShowEmailError(true);
+            hasError = true;
         }
 
         if (!userInput.trim()) {
-            alert('Please describe your dream first.');
-            return;
+            setShowDreamError(true);
+            hasError = true;
         }
+
+        if (hasError) return;
 
         setLoading(true);
         localStorage.setItem("text", userInput);
         localStorage.setItem("additional", additionalInfo);
+        localStorage.setItem("email", email);
 
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
@@ -34,7 +51,8 @@ export default function CoreSection({ onClose }) {
                 body: JSON.stringify({ 
                     amount: 200, 
                     text: userInput,
-                    additional: additionalInfo 
+                    additional: additionalInfo,
+                    email: email
                 }),
             });
 
@@ -59,15 +77,47 @@ export default function CoreSection({ onClose }) {
         }
     };
 
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        if (showEmailError && validateEmail(e.target.value)) {
+            setShowEmailError(false);
+        }
+    };
+
+    const handleDreamChange = (value) => {
+        setUserInput(value);
+        if (showDreamError && value.trim()) {
+            setShowDreamError(false);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <h2>Analizuj swój sen</h2>
             <UserInput
                 userInput={userInput}
-                setUserInput={setUserInput}
+                setUserInput={handleDreamChange}
                 additionalInfo={additionalInfo}
                 setAdditionalInfo={setAdditionalInfo}
+                showDreamError={showDreamError}
             />
+            <div className={styles.emailContainer}>
+                <label className={`${styles.emailLabel} ${showEmailError ? styles.error : ''}`}>
+                    <span>Adres e-mail do faktury</span>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        placeholder="twoj@email.com"
+                        className={styles.emailInput}
+                    />
+                    {showEmailError && (
+                        <span className={styles.errorMessage}>
+                            Proszę podać prawidłowy adres e-mail
+                        </span>
+                    )}
+                </label>
+            </div>
             <div className={styles.termsContainer}>
                 <label className={`${styles.termsLabel} ${showTermsError ? styles.error : ''}`}>
                     <input

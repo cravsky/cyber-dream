@@ -34,6 +34,17 @@
   min-height: 120px;
 }
 
+.label.error .textarea {
+  border-color: #dc2626;
+}
+
+.errorMessage {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
 .label:first-child .textarea {
   height: 250px;
   min-height: 200px;
@@ -72,5 +83,9 @@
   .label:last-child .textarea {
     height: 100px;
     min-height: 60px;
+  }
+
+  .errorMessage {
+    font-size: 0.75rem;
   }
 }

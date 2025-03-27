@@ -1,7 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styles from './UserInput.module.css';
 
-export default function UserInput({ userInput, setUserInput, additionalInfo, setAdditionalInfo }) {
+export default function UserInput({ 
+    userInput, 
+    setUserInput, 
+    additionalInfo, 
+    setAdditionalInfo,
+    showDreamError 
+}) {
     const handleFileDrop = (event, setter) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
@@ -18,7 +24,7 @@ export default function UserInput({ userInput, setUserInput, additionalInfo, set
 
     return (
         <div className={styles.container}>
-            <label className={styles.label}>
+            <label className={`${styles.label} ${showDreamError ? styles.error : ''}`}>
                 <span>Opisz swój sen</span>
                 <textarea
                     className={styles.textarea}
@@ -28,6 +34,11 @@ export default function UserInput({ userInput, setUserInput, additionalInfo, set
                     onDrop={e => handleFileDrop(e, setUserInput)}
                     onDragOver={e => e.preventDefault()}
                 />
+                {showDreamError && (
+                    <span className={styles.errorMessage}>
+                        Proszę opisać swój sen
+                    </span>
+                )}
             </label>
             <label className={styles.label}>
                 <span>Dodatkowe informacje</span>

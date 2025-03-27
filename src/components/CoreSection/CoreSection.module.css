@@ -49,6 +49,48 @@
   margin-top: 1.5rem;
 }
 
+.emailContainer {
+  margin-top: 1.5rem;
+}
+
+.emailLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.emailLabel span {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: rgba(10, 17, 40, 0.8);
+  border: 1px solid var(--color-primary);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(123, 158, 249, 0.2);
+}
+
+.emailLabel.error .emailInput {
+  border-color: #dc2626;
+}
+
+.errorMessage {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
 .termsLabel {
   display: flex;
   align-items: flex-start;
@@ -106,5 +148,10 @@
 
   .termsLabel {
     font-size: 0.85rem;
+  }
+
+  .emailInput {
+    padding: 0.7rem;
+    font-size: 0.9rem;
   }
 }
