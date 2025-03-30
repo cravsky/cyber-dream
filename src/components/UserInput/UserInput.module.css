@@ -11,11 +11,16 @@
   margin-bottom: 0;
 }
 
-.label span {
-  display: block;
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.labelRow span {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
   color: var(--color-primary);
   letter-spacing: 0.5px;
 }
@@ -37,6 +42,51 @@
   resize: vertical;
   transition: all 0.3s ease;
   min-height: 120px;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.controlButton {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(123, 158, 249, 0.1);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controlButton:hover {
+  background: rgba(123, 158, 249, 0.2);
+  transform: translateY(-2px);
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.controlButton.recording {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
 }
 
 .counter {
@@ -85,13 +135,19 @@
 }
 
 @media (max-width: 768px) {
-  .label span {
+  .labelRow span {
     font-size: 1rem;
   }
 
   .textarea {
     padding: 1rem;
     font-size: 1rem;
+  }
+
+  .controlButton {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
   }
 
   .label:first-child .textarea {
