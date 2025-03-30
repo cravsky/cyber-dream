@@ -20,6 +20,11 @@
   letter-spacing: 0.5px;
 }
 
+.textareaWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .textarea {
   width: 100%;
   background: rgba(10, 17, 40, 0.8);
@@ -32,6 +37,20 @@
   resize: vertical;
   transition: all 0.3s ease;
   min-height: 120px;
+}
+
+.counter {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  opacity: 0.7;
+  font-family: monospace;
+  background: rgba(10, 17, 40, 0.8);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 .label.error .textarea {
@@ -87,5 +106,10 @@
 
   .errorMessage {
     font-size: 0.75rem;
+  }
+
+  .counter {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
   }
 }
