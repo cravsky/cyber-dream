@@ -28,7 +28,7 @@ export default function UserInput({
                 <span>Opisz swój sen</span>
                 <textarea
                     className={styles.textarea}
-                    placeholder="Np. śniło mi się, że..."
+                    placeholder="Śniło mi się, że spaceruję po lesie pełnym drzew, które świecą delikatnym, niebieskim światłem. Nagle napotykam lisa, który mówi ludzkim głosem i zaprasza mnie do ukrytej biblioteki..."
                     value={userInput}
                     onChange={e => setUserInput(e.target.value)}
                     onDrop={e => handleFileDrop(e, setUserInput)}
@@ -44,7 +44,7 @@ export default function UserInput({
                 <span>Dodatkowe informacje</span>
                 <textarea
                     className={styles.textarea}
-                    placeholder="Np. jestem studentem informatyki, niedawno rozstałem się z dziewczyną..."
+                    placeholder="Teresa. Jestem dojrzałą kobietą, szukam lepszej pracy. Sen był przyjemny."
                     value={additionalInfo}
                     onChange={e => setAdditionalInfo(e.target.value)}
                     onDrop={e => handleFileDrop(e, setAdditionalInfo)}

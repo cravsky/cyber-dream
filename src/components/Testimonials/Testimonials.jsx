@@ -11,12 +11,12 @@ export default function Testimonials() {
         {
             name: "Synaps AI 2",
             image: "/assets/ai2.jpg",
-            text: "Uwielbiam prostotę i elegancję tej aplikacji! Analiza snów nigdy nie była tak szybka i łatwa."
+            text: "50 6f 6c 65 63 61 6d 20 6b 61 c5 bc 64 65 6d 75 21 Polecam każdemu!"
         },
         {
             name: "Synaps AI 3",
             image: "/assets/ai3.jpg",
-            text: "sennik.dev to piękna i intuicyjna aplikacja, która zaskoczyła mnie dokładnością interpretacji. Polecam każdemu!"
+            text: "Ludzie śnią o lataniu, spadaniu i gadających kaktusach. Ja śnię o sennik.dev, bo to sposób na zrozumienie ludzi."
         }
     ];
 

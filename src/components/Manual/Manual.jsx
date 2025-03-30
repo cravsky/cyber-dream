@@ -8,26 +8,26 @@ export default function Manual() {
     {
       icon: <FaPencilAlt />,
       title: "Opisz swój sen",
-      description: "Podziel się swoim snem w szczegółowy sposób. Im więcej detali, tym dokładniejsza będzie interpretacja.",
-      tooltip: "Możesz opisać swój sen własnymi słowami lub wkleić gotowy tekst. Pamiętaj o szczegółach takich jak kolory, emocje, miejsca i osoby występujące we śnie."
+      description: "Podziel się swoim snem - im więcej detali, tym dokładniejsza będzie interpretacja. Nie podwaj danych osobowych!",
+      tooltip: "Możesz opisać sen własnymi słowami lub wkleić gotowy tekst. Unikaj podawania danych osobowych — takich jak imię i nazwisko, adres, numer telefonu czy PESEL. Nie zbieramy takich informacji.",
     },
     {
       icon: <FaCreditCard />,
-      title: "Dokonaj płatności",
-      description: "Bezpieczna płatność online poprzez Stripe. Twoje dane są w pełni chronione.",
-      tooltip: "Akceptujemy płatności kartą. Wszystkie transakcje są szyfrowane i bezpieczne. Płatność jest jednorazowa, bez ukrytych opłat."
+      title: "Dokonaj płatności - 10 zł",
+      description: "Bezpieczna płatność online. Twoje dane są w pełni chronione.",
+      tooltip: "Akceptujemy płatności kartą oraz BLIKIEM. Wszystkie transakcje są szyfrowane i w pełni bezpieczne. To jednorazowa opłata — bez subskrypcji i ukrytych kosztów."
     },
     {
       icon: <FaBrain />,
       title: "Analiza AI",
-      description: "Zaawansowana sztuczna inteligencja analizuje symbolikę i kontekst Twojego snu.",
-      tooltip: "Nasz system AI wykorzystuje zaawansowane algorytmy do analizy symboliki, emocji i wzorców w Twoim śnie, uwzględniając kontekst osobisty i kulturowy."
+      description: "Sztuczna inteligencja analizuje symbolikę oraz kontekst Twojego snu.",
+      tooltip: "Nasz system AI wykorzystuje zaawansowane algorytmy do analizy symboliki, emocji i ukrytych wzorców w Twoim śnie, biorąc pod uwagę osobisty i kulturowy kontekst."
     },
     {
       icon: <FaFileAlt />,
-      title: "Otrzymaj interpretację",
-      description: "Otrzymasz szczegółową interpretację snu wraz z wyjaśnieniem znaczenia poszczególnych symboli.",
-      tooltip: "Interpretacja zawiera analizę głównych symboli, emocji i możliwych znaczeń Twojego snu. Otrzymasz też wskazówki, jak możesz wykorzystać te informacje w życiu codziennym."
+      title: "Otrzymasz interpretację",
+      description: "Otrzymasz szczegółowe wyjaśnienie snu. Wyświetlone na ekranie i do pobrania w formacie PDF.",
+      tooltip: "Interpretacja zawiera analizę głównych symboli, emocji i możliwych znaczeń Twojego snu."
     }
   ];
 
