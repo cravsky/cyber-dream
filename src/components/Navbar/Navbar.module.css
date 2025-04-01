@@ -1,12 +1,16 @@
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
   background: rgba(10, 17, 40, 0.8);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(123, 158, 249, 0.1);
+  transition: all var(--transition-speed) ease;
+}
+
+.container.disabled {
+  cursor: not-allowed;
+}
+
+.container.disabled * {
+  pointer-events: none;
 }
 
 .content {
@@ -50,7 +54,7 @@
   transition: color var(--transition-speed) ease;
 }
 
-.nav button:hover {
+.nav button:not(:disabled):hover {
   color: var(--color-primary);
   transform: none;
   box-shadow: none;
@@ -59,6 +63,11 @@
 .nav button svg {
   font-size: 1.2rem;
   color: var(--color-primary);
+}
+
+.nav button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .mobileControls {
@@ -132,6 +141,11 @@
 .desktopAnalyzeButton {
   padding: 0.8rem 2rem;
   font-size: 1rem;
+}
+
+.desktopAnalyzeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
