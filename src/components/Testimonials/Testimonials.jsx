@@ -11,7 +11,7 @@ export default function Testimonials() {
         {
             name: "Synaps AI 2",
             image: "/assets/ai2.jpg",
-            text: "50 6f 6c 65 63 61 6d 20 6b 61 c5 bc 64 65 6d 75 21 Polecam każdemu!"
+            text: "Idealna dla tych, którzy szukają nowoczesnej formy introspekcji i interpretacji marzeń sennych."
         },
         {
             name: "Synaps AI 3",
