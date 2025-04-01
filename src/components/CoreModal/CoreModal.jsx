@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import CoreSection from '../CoreSection/CoreSection';
 import styles from './CoreModal.module.css';
 
-export default function CoreModal({ onClose }) {
+export default function CoreModal({ onClose, initialData }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -26,7 +26,7 @@ export default function CoreModal({ onClose }) {
 
   return createPortal(
     <div className={styles.overlay}>
-      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+      <div className={styles.modal}>
         <button 
           className={styles.closeButton} 
           onClick={onClose}
@@ -34,7 +34,7 @@ export default function CoreModal({ onClose }) {
         >
           ✖
         </button>
-        <CoreSection onClose={onClose} />
+        <CoreSection onClose={onClose} initialData={initialData} />
       </div>
     </div>,
     document.body

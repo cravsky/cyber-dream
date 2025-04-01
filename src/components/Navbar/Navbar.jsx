@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegMoon, FaHome, FaBookOpen, FaUserFriends } from 'react-icons/fa';
 import styles from './Navbar.module.css';
-import CoreModal from '../CoreModal/CoreModal';
 
-export default function Navbar({ disabled }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function Navbar({ disabled, onAnalyzeClick }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavClick = (id) => {
@@ -28,11 +26,11 @@ export default function Navbar({ disabled }) {
     <nav className={`${styles.container} ${disabled ? styles.disabled : ''}`}>
       <div className={styles.content}>
         <Link to="/" className={styles.logo} tabIndex={disabled ? -1 : 0}>sennik.dev</Link>
-        
+
         <div className={styles.mobileControls}>
-          <button 
-            className={styles.analyzeButton} 
-            onClick={() => !disabled && setIsModalOpen(true)}
+          <button
+            className={styles.analyzeButton}
+            onClick={() => !disabled && onAnalyzeClick()}
             aria-label="Analyze Dream"
             disabled={disabled}
             tabIndex={disabled ? -1 : 0}
@@ -40,8 +38,8 @@ export default function Navbar({ disabled }) {
             <FaRegMoon />
           </button>
 
-          <button 
-            className={styles.menuButton} 
+          <button
+            className={styles.menuButton}
             onClick={() => !disabled && setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             disabled={disabled}
@@ -53,7 +51,7 @@ export default function Navbar({ disabled }) {
 
         <ul className={`${styles.nav} ${isMenuOpen ? styles.active : ''}`}>
           <li>
-            <button 
+            <button
               onClick={() => handleNavClick('hero')}
               tabIndex={disabled ? -1 : 0}
               disabled={disabled}
@@ -63,7 +61,7 @@ export default function Navbar({ disabled }) {
             </button>
           </li>
           <li>
-            <button 
+            <button
               onClick={() => handleNavClick('manual')}
               tabIndex={disabled ? -1 : 0}
               disabled={disabled}
@@ -73,7 +71,7 @@ export default function Navbar({ disabled }) {
             </button>
           </li>
           <li>
-            <button 
+            <button
               onClick={() => handleNavClick('testimonials')}
               tabIndex={disabled ? -1 : 0}
               disabled={disabled}
@@ -83,18 +81,16 @@ export default function Navbar({ disabled }) {
             </button>
           </li>
         </ul>
-        
-        <button 
-          className={styles.desktopAnalyzeButton} 
-          onClick={() => !disabled && setIsModalOpen(true)}
+
+        <button
+          className={styles.desktopAnalyzeButton}
+          onClick={() => !disabled && onAnalyzeClick()}
           disabled={disabled}
           tabIndex={disabled ? -1 : 0}
         >
           Analizuj
         </button>
       </div>
-
-      {isModalOpen && <CoreModal onClose={() => setIsModalOpen(false)} />}
     </nav>
   );
 }

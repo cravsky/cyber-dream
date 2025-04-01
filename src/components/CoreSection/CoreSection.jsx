@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UserInput from '../UserInput/UserInput';
 import styles from './CoreSection.module.css';
 
-export default function CoreSection({ onClose }) {
-    const [userInput, setUserInput] = useState('');
-    const [additionalInfo, setAdditionalInfo] = useState('');
-    const [email, setEmail] = useState('');
+export default function CoreSection({ onClose, initialData }) {
+    const [userInput, setUserInput] = useState(initialData?.userInput || '');
+    const [additionalInfo, setAdditionalInfo] = useState(initialData?.additionalInfo || '');
+    const [email, setEmail] = useState(initialData?.email || '');
     const [loading, setLoading] = useState(false);
-    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(initialData?.termsAccepted || false);
     const [showTermsError, setShowTermsError] = useState(false);
     const [showEmailError, setShowEmailError] = useState(false);
     const [showDreamError, setShowDreamError] = useState(false);
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
@@ -91,6 +94,21 @@ export default function CoreSection({ onClose }) {
         }
     };
 
+    const handleNavigation = (path) => {
+        navigate(path, {
+            state: {
+                previousPath: location.pathname,
+                modalOpen: true,
+                formData: {
+                    userInput,
+                    additionalInfo,
+                    email,
+                    termsAccepted
+                }
+            }
+        });
+    };
+
     return (
         <div className={styles.container}>
             <h2>Analizuj swój sen</h2>
@@ -127,7 +145,20 @@ export default function CoreSection({ onClose }) {
                         className={styles.checkbox}
                     />
                     <span>
-                        Oświadczam, że zapoznałem się z <Link to="/terms" target="_blank">Regulaminem</Link> i <Link to="/privacy" target="_blank">Polityką Prywatności</Link>
+                        Oświadczam, że zapoznałem się z{' '}
+                        <button 
+                            className={styles.linkButton}
+                            onClick={() => handleNavigation('/terms')}
+                        >
+                            Regulaminem
+                        </button>{' '}
+                        i{' '}
+                        <button 
+                            className={styles.linkButton}
+                            onClick={() => handleNavigation('/privacy')}
+                        >
+                            Polityką Prywatności
+                        </button>
                     </span>
                 </label>
             </div>

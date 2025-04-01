@@ -10,13 +10,15 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  z-index: 1000;
+  z-index: 2000;
   animation: fadeIn 0.3s ease-out;
 }
 
 .modal {
   width: 100%;
   max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
   background: rgba(10, 17, 40, 0.8);
   border-radius: 30px;
   position: relative;
