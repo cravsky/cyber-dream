@@ -17,21 +17,21 @@
 .modal {
   width: 100%;
   max-width: 800px;
-  max-height: 90vh;
-  overflow-y: auto;
   background: rgba(10, 17, 40, 0.8);
   border-radius: 30px;
   position: relative;
-  padding: 3rem;
+  padding: 2.5rem;
   border: 1px solid rgba(123, 158, 249, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease-out;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .closeButton {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -45,6 +45,7 @@
   cursor: pointer;
   transition: all var(--transition-speed) ease;
   border: 1px solid rgba(123, 158, 249, 0.2);
+  z-index: 1;
 }
 
 .closeButton:hover {
@@ -74,14 +75,21 @@
   }
 
   .modal {
-    padding: 2rem;
+    padding: 2rem 1.5rem;
+    max-height: calc(100vh - 2rem);
   }
 
   .closeButton {
-    top: 1rem;
-    right: 1rem;
+    top: 0.75rem;
+    right: 0.75rem;
     width: 35px;
     height: 35px;
     font-size: 1rem;
+  }
+}
+
+@media (max-height: 800px) {
+  .modal {
+    max-height: calc(100vh - 2rem);
   }
 }
