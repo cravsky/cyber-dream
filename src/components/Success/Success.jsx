@@ -18,6 +18,7 @@ export default function Success() {
 
         const storedText = localStorage.getItem("text");
         const storedAdditional = localStorage.getItem("additional");
+        const sessionId = localStorage.getItem("sessionId");
 
         if (!storedText) {
             setInterpretation("❌ No dream data found. Please try again.");
@@ -29,8 +30,12 @@ export default function Success() {
             const response = await fetch(`${BACKEND_URL}/api/interpret/dream`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: storedText, additional: storedAdditional }),
-            });
+                body: JSON.stringify({ 
+                  sessionId, // NEW!
+                  text: storedText, 
+                  additional: storedAdditional 
+                }),
+              });
 
             const data = await response.json();
             setInterpretation(data.response);
