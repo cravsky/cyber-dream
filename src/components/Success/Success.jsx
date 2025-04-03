@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaDownload } from 'react-icons/fa';
+import { FaDownload, FaStar } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import styles from './Success.module.css';
+import Feedback from '../Feedback/Feedback';
 
 export default function Success() {
     const navigate = useNavigate();
     const [interpretation, setInterpretation] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [showFeedback, setShowFeedback] = useState(false);
 
     useEffect(() => {
         fetchInterpretation();
@@ -31,7 +33,7 @@ export default function Success() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                  sessionId, // NEW!
+                  sessionId,
                   text: storedText, 
                   additional: storedAdditional 
                 }),
@@ -91,12 +93,20 @@ export default function Success() {
                     ) : (
                         <>
                             <p className={styles.interpretation}>{interpretation}</p>
-                            {/* <button 
-                                className={styles.downloadButton}
-                                onClick={handleDownloadPDF}
-                            >
-                                <FaDownload /> Pobierz interpretację
-                            </button> */}
+                            <div className={styles.actions}>
+                                <button 
+                                    className={styles.feedbackButton}
+                                    onClick={() => setShowFeedback(true)}
+                                >
+                                    <FaStar /> Oceń interpretację
+                                </button>
+                                {/* <button 
+                                    className={styles.downloadButton}
+                                    onClick={handleDownloadPDF}
+                                >
+                                    <FaDownload /> Pobierz interpretację
+                                </button> */}
+                            </div>
                         </>
                     )}
                 </div>
@@ -108,6 +118,9 @@ export default function Success() {
                     Strona Główna
                 </button>
             </div>
+            {showFeedback && (
+                <Feedback onClose={() => setShowFeedback(false)} />
+            )}
         </div>
     );
 }

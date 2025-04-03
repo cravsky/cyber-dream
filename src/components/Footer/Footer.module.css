@@ -57,6 +57,24 @@
   opacity: 0.5;
 }
 
+.feedbackButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--transition-speed) ease;
+}
+
+.feedbackButton:hover {
+  color: var(--color-accent);
+  transform: none;
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
   .content {
     padding: 1.5rem 1rem;
@@ -73,9 +91,11 @@
 
   .links {
     gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .links a {
+  .links a, .feedbackButton {
     font-size: 1rem;
   }
 }
