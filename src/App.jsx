@@ -15,7 +15,7 @@ import Cancel from './components/Cancel/Cancel';
 import Success from './components/Success/Success';
 import Terms from './components/Terms/Terms';
 import Privacy from './components/Privacy/Privacy';
-import CoreModal from './components/CoreModal/CoreModal';
+import DreamAnalysisModal from './components/DreamAnalysisModal/DreamAnalysisModal';
 import Layout from './components/Layout/Layout';
 
 import './styles/globals.css';
@@ -41,7 +41,6 @@ function InnerApp() {
 
   useEffect(() => {
     const { state } = location;
-    // Only update formData — do NOT auto-open modal
     if (state?.formData) {
       setFormData(state.formData);
     }
@@ -65,7 +64,7 @@ function InnerApp() {
       </Layout>
 
       {isHome && showModal && (
-        <CoreModal
+        <DreamAnalysisModal
           onClose={() => setShowModal(false)}
           initialData={formData}
         />
