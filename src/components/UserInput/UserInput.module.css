@@ -115,7 +115,7 @@
 
   .label:last-child .textarea {
     height: 80px;
-    min-height: 60px;
+    min-height: 80px;
   }
 
   .errorMessage {
@@ -154,7 +154,7 @@
   }
 
   .label:last-child .textarea {
-    height: 70px;
-    min-height: 50px;
+    height: 80px;
+    min-height: 80px;
   }
 }

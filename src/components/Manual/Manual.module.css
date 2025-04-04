@@ -27,7 +27,7 @@
 
 .timeline {
   position: relative;
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 
 .timeline::before {
@@ -59,7 +59,7 @@
 .step::before {
   content: '';
   position: absolute;
-  left: -3rem;
+  left: -2rem;
   top: 1.5rem;
   width: 12px;
   height: 12px;
@@ -77,6 +77,8 @@
   border: 1px solid rgba(123, 158, 249, 0.1);
   transition: all 0.3s ease;
   position: relative;
+  margin-left: 1rem;
+  width: calc(100% - 1rem);
 }
 
 .stepContent:hover {
@@ -90,6 +92,7 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  padding-right: 2.5rem;
 }
 
 .iconContainer {
@@ -140,7 +143,6 @@
   line-height: 1.6;
   opacity: 0.9;
   margin: 0;
-  padding-right: 2rem;
 }
 
 .tooltip {
@@ -191,23 +193,26 @@
   }
 
   .timeline {
-    padding-left: 2rem;
+    padding-left: 1.5rem;
   }
 
   .step::before {
-    left: -2rem;
+    left: -1.5rem;
     width: 10px;
     height: 10px;
   }
 
   .stepContent {
-    padding: 2rem 1.5rem 1.5rem;
+    padding: 1.5rem;
+    margin-left: 0.5rem;
+    width: calc(100% - 0.5rem);
   }
 
   .header {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    padding-right: 2rem;
   }
 
   .iconContainer {
@@ -230,7 +235,6 @@
   .stepContent p {
     font-size: 1rem;
     margin-top: 0.8rem;
-    padding-right: 1.5rem;
   }
 
   .tooltip {

@@ -117,26 +117,26 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 0.5rem;
     min-height: calc(100vh - 150px);
   }
 
   .content {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .content h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
 
   .interpretationBox {
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    padding: 1.2rem;
+    margin: 1rem 0;
   }
 
   .interpretationBox h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
   }
 
@@ -144,6 +144,7 @@
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    padding: 0;
   }
 
   .button {
@@ -162,5 +163,25 @@
     justify-content: center;
     font-size: 0.9rem;
     padding: 0.7rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+
+  .content {
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .interpretationBox {
+    padding: 1rem;
+    margin: 0.8rem 0;
+  }
+
+  .interpretation {
+    font-size: 0.9rem;
   }
 }

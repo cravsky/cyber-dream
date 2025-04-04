@@ -145,7 +145,7 @@ export default function CoreSection({ onClose, initialData }) {
                         className={styles.checkbox}
                     />
                     <span>
-                        Oświadczam, że zapoznałem się z{' '}
+                        Oświadczam, że zapoznałem/am się z{' '}
                         <button 
                             className={styles.linkButton}
                             onClick={() => handleNavigation('/terms')}
