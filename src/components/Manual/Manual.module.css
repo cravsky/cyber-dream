@@ -1,33 +1,34 @@
 .container {
   position: relative;
   overflow: hidden;
-  background: rgba(10, 17, 40, 0.6);
+  background: var(--bg-modal);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(123, 158, 249, 0.1);
-  margin: 6rem 0;
+  border: 1px solid var(--border-primary);
+  margin: var(--spacing-4xl) 0;
+  border-radius: var(--radius-lg);
 }
 
 .content {
   position: relative;
-  z-index: 1;
-  max-width: 900px;
+  z-index: var(--z-base);
+  max-width: var(--max-width-md);
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: var(--spacing-4xl) var(--spacing-2xl);
 }
 
 .content h2 {
-  font-size: 2.5rem;
+  font-size: var(--font-size-3xl);
   text-align: center;
-  margin-bottom: 4rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  margin-bottom: var(--spacing-4xl);
+  background: var(--bg-gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .timeline {
   position: relative;
-  padding-left: 2rem;
+  padding-left: var(--spacing-2xl);
 }
 
 .timeline::before {
@@ -41,13 +42,13 @@
     var(--color-primary) 0%,
     var(--color-accent) 50%,
     var(--color-primary) 100%);
-  border-radius: 2px;
+  border-radius: var(--radius-full);
   opacity: 0.3;
 }
 
 .step {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-2xl);
   opacity: 0;
   animation: fadeInStep 0.6s ease-out forwards;
 }
@@ -59,57 +60,57 @@
 .step::before {
   content: '';
   position: absolute;
-  left: -2rem;
-  top: 1.5rem;
+  left: calc(var(--spacing-2xl) * -1);
+  top: var(--spacing-xl);
   width: 12px;
   height: 12px;
   background: var(--color-primary);
-  border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 0 20px var(--color-primary);
+  border-radius: var(--radius-full);
+  z-index: var(--z-base);
+  box-shadow: var(--shadow-glow);
   animation: pulse 2s infinite;
 }
 
 .stepContent {
-  background: rgba(10, 17, 40, 0.8);
-  padding: 2rem;
-  border-radius: 20px;
-  border: 1px solid rgba(123, 158, 249, 0.1);
-  transition: all 0.3s ease;
+  background: var(--bg-input);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-speed) var(--transition-timing);
   position: relative;
-  margin-left: 1rem;
-  width: calc(100% - 1rem);
+  margin-left: var(--spacing-md);
+  width: calc(100% - var(--spacing-md));
 }
 
 .stepContent:hover {
-  transform: translateX(10px);
+  transform: translateX(var(--spacing-sm));
   border-color: var(--color-primary);
-  box-shadow: 0 8px 32px rgba(123, 158, 249, 0.2);
+  box-shadow: var(--shadow-lg);
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding-right: 2.5rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding-right: var(--spacing-2xl);
 }
 
 .iconContainer {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  border-radius: 50%;
+  background: var(--bg-gradient-primary);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: var(--font-size-xl);
   color: var(--color-text);
   flex-shrink: 0;
 }
 
 .header h3 {
-  font-size: 1.4rem;
+  font-size: var(--font-size-xl);
   color: var(--color-primary);
   letter-spacing: 0.5px;
   margin: 0;
@@ -117,15 +118,15 @@
 
 .infoIcon {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
   background: none;
   border: none;
-  padding: 8px;
+  padding: var(--spacing-sm);
   color: var(--color-primary);
-  font-size: 1.2rem;
+  font-size: var(--font-size-xl);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) var(--transition-timing);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +140,7 @@
 
 .stepContent p {
   color: var(--color-text);
-  font-size: 1.1rem;
+  font-size: var(--font-size-lg);
   line-height: 1.6;
   opacity: 0.9;
   margin: 0;
@@ -147,13 +148,13 @@
 
 .tooltip {
   max-width: 300px !important;
-  background-color: rgba(10, 17, 40, 0.95) !important;
+  background: var(--bg-modal) !important;
   border: 1px solid var(--color-primary) !important;
-  padding: 1rem !important;
-  font-size: 0.95rem !important;
+  padding: var(--spacing-md) !important;
+  font-size: var(--font-size-base) !important;
   line-height: 1.5 !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-  z-index: 1000 !important;
+  box-shadow: var(--shadow-lg) !important;
+  z-index: var(--z-modal) !important;
 }
 
 .step:nth-child(1) { animation-delay: 0.2s; }
@@ -164,7 +165,7 @@
 @keyframes fadeInStep {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(calc(var(--spacing-md) * -1));
   }
   to {
     opacity: 1;
@@ -172,73 +173,64 @@
   }
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(123, 158, 249, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(123, 158, 249, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(123, 158, 249, 0); }
-}
-
 @media (max-width: 768px) {
   .container {
-    margin: 4rem 0;
+    margin: var(--spacing-2xl) 0;
   }
 
   .content {
-    padding: 3rem 1rem;
+    padding: var(--spacing-2xl) var(--spacing-md);
   }
 
   .content h2 {
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-2xl);
   }
 
   .timeline {
-    padding-left: 1.5rem;
+    padding-left: var(--spacing-xl);
   }
 
   .step::before {
-    left: -1.5rem;
+    left: calc(var(--spacing-xl) * -1);
     width: 10px;
     height: 10px;
   }
 
   .stepContent {
-    padding: 1.5rem;
-    margin-left: 0.5rem;
-    width: calc(100% - 0.5rem);
+    padding: var(--spacing-lg);
+    margin-left: var(--spacing-sm);
+    width: calc(100% - var(--spacing-sm));
   }
 
   .header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding-right: 2rem;
+    gap: var(--spacing-sm);
+    padding-right: var(--spacing-xl);
   }
 
   .iconContainer {
     width: 32px;
     height: 32px;
-    font-size: 1rem;
+    font-size: var(--font-size-lg);
   }
 
   .header h3 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
   }
 
   .infoIcon {
-    top: 0.75rem;
-    right: 0.75rem;
-    font-size: 1.1rem;
-    padding: 6px;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-xs);
   }
 
   .stepContent p {
-    font-size: 1rem;
-    margin-top: 0.8rem;
+    font-size: var(--font-size-base);
   }
 
   .tooltip {
     max-width: 250px !important;
-    font-size: 0.9rem !important;
+    font-size: var(--font-size-sm) !important;
   }
 }

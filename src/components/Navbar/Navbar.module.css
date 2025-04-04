@@ -1,12 +1,13 @@
 .container {
-  background: rgba(10, 17, 40, 0.8);
+  background: var(--bg-modal);
   backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(123, 158, 249, 0.1);
-  transition: all var(--transition-speed) ease;
+  border-bottom: 1px solid var(--border-primary);
+  transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .container.disabled {
   cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .container.disabled * {
@@ -14,20 +15,20 @@
 }
 
 .content {
-  max-width: 1200px;
+  max-width: var(--max-width-lg);
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: var(--spacing-md) var(--container-padding-desktop);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: var(--spacing-2xl);
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 700;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--bg-gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
@@ -36,7 +37,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--spacing-2xl);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -45,13 +46,13 @@
 .nav button {
   background: none;
   border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-base);
   color: var(--color-text);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: color var(--transition-speed) ease;
+  gap: var(--spacing-sm);
+  transition: color var(--transition-speed) var(--transition-timing);
 }
 
 .nav button:not(:disabled):hover {
@@ -61,7 +62,7 @@
 }
 
 .nav button svg {
-  font-size: 1.2rem;
+  font-size: var(--font-size-xl);
   color: var(--color-primary);
 }
 
@@ -73,18 +74,18 @@
 .mobileControls {
   display: none;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .analyzeButton {
   width: 40px;
   height: 40px;
   padding: 0;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: var(--font-size-xl);
 }
 
 .menuButton {
@@ -103,7 +104,7 @@
   height: 2px;
   background: var(--color-primary);
   position: relative;
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .menuIcon::before,
@@ -113,7 +114,7 @@
   width: 24px;
   height: 2px;
   background: var(--color-primary);
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .menuIcon::before {
@@ -139,8 +140,16 @@
 }
 
 .desktopAnalyzeButton {
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  font-size: var(--font-size-base);
+  background: var(--bg-gradient-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.buttonIcon {
+  font-size: var(--font-size-lg);
 }
 
 .desktopAnalyzeButton:disabled {
@@ -150,11 +159,11 @@
 
 @media (max-width: 768px) {
   .content {
-    padding: 1rem;
+    padding: var(--spacing-md) var(--container-padding-mobile);
   }
 
   .logo {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2xl);
   }
 
   .mobileControls {
@@ -166,15 +175,16 @@
     top: 72px;
     left: 0;
     right: 0;
-    background: rgba(10, 17, 40, 0.95);
+    background: var(--bg-modal);
     backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: var(--spacing-2xl);
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--spacing-lg);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed) var(--transition-timing);
+    z-index: var(--z-header);
   }
 
   .nav.active {
@@ -186,8 +196,8 @@
   .nav button {
     width: 100%;
     justify-content: center;
-    font-size: 1.1rem;
-    padding: 1rem;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md);
   }
 
   .desktopAnalyzeButton {

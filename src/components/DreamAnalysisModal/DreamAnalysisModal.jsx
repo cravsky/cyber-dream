@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useLocation, useNavigate } from 'react-router-dom';
-import UserInput from '../UserInput/UserInput';
+import DreamAnalysisForm from '../DreamAnalysisForm/DreamAnalysisForm';
 import styles from './DreamAnalysisModal.module.css';
 
 export default function DreamAnalysisModal({ onClose, initialData }) {
@@ -13,9 +12,6 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
   const [showTermsError, setShowTermsError] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
   const [showDreamError, setShowDreamError] = useState(false);
-
-  const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -94,42 +90,6 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
     }
   };
 
-  const handleTermsChange = (e) => {
-    setTermsAccepted(e.target.checked);
-    if (e.target.checked) {
-      setShowTermsError(false);
-    }
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    if (showEmailError && validateEmail(e.target.value)) {
-      setShowEmailError(false);
-    }
-  };
-
-  const handleDreamChange = (value) => {
-    setUserInput(value);
-    if (showDreamError && value.trim()) {
-      setShowDreamError(false);
-    }
-  };
-
-  const handleNavigation = (path) => {
-    navigate(path, {
-      state: {
-        previousPath: location.pathname,
-        modalOpen: true,
-        formData: {
-          userInput,
-          additionalInfo,
-          email,
-          termsAccepted
-        }
-      }
-    });
-  };
-
   return createPortal(
     <div className={styles.overlay}>
       <div className={styles.modal}>
@@ -140,75 +100,22 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
         >
           ✖
         </button>
-        <div className={styles.container}>
-          <h2>Analizuj swój sen</h2>
-          <UserInput
-            userInput={userInput}
-            setUserInput={handleDreamChange}
-            additionalInfo={additionalInfo}
-            setAdditionalInfo={setAdditionalInfo}
-            showDreamError={showDreamError}
-          />
-          <div className={styles.emailContainer}>
-            <label className={`${styles.emailLabel} ${showEmailError ? styles.error : ''}`}>
-              <span>Adres e-mail do faktury</span>
-              <input
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="twoj@email.com"
-                className={styles.emailInput}
-              />
-              {showEmailError && (
-                <span className={styles.errorMessage}>
-                  Proszę podać prawidłowy adres e-mail
-                </span>
-              )}
-            </label>
-          </div>
-          <div className={styles.termsContainer}>
-            <label className={`${styles.termsLabel} ${showTermsError ? styles.error : ''}`}>
-              <input
-                type="checkbox"
-                checked={termsAccepted}
-                onChange={handleTermsChange}
-                className={styles.checkbox}
-              />
-              <span>
-                Oświadczam, że zapoznałem się z{' '}
-                <button 
-                  className={styles.linkButton}
-                  onClick={() => handleNavigation('/terms')}
-                >
-                  Regulaminem
-                </button>{' '}
-                i{' '}
-                <button 
-                  className={styles.linkButton}
-                  onClick={() => handleNavigation('/privacy')}
-                >
-                  Polityką Prywatności
-                </button>
-              </span>
-            </label>
-          </div>
-          <div className={styles.actions}>
-            <button 
-              className={styles.cancelButton} 
-              onClick={onClose}
-              disabled={loading}
-            >
-              Anuluj
-            </button>
-            <button 
-              className={styles.submitButton} 
-              onClick={handleProceedToPayment}
-              disabled={loading}
-            >
-              {loading ? 'Przetwarzanie...' : 'Rozpocznij analizę'}
-            </button>
-          </div>
-        </div>
+        <DreamAnalysisForm
+          userInput={userInput}
+          setUserInput={setUserInput}
+          additionalInfo={additionalInfo}
+          setAdditionalInfo={setAdditionalInfo}
+          email={email}
+          setEmail={setEmail}
+          termsAccepted={termsAccepted}
+          setTermsAccepted={setTermsAccepted}
+          showTermsError={showTermsError}
+          showEmailError={showEmailError}
+          showDreamError={showDreamError}
+          loading={loading}
+          onSubmit={handleProceedToPayment}
+          onCancel={onClose}
+        />
       </div>
     </div>,
     document.body

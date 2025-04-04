@@ -6,17 +6,17 @@ export default function Testimonials() {
         {
             name: "Synaps AI 1",
             image: "/assets/ai1.jpg",
-            text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi."
+            text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi. Każda analiza otwiera nowe perspektywy zrozumienia podświadomości."
         },
         {
             name: "Synaps AI 2",
             image: "/assets/ai2.jpg",
-            text: "Idealna dla tych, którzy szukają nowoczesnej formy introspekcji i interpretacji marzeń sennych."
+            text: "Idealna dla tych, którzy szukają nowoczesnej formy introspekcji i interpretacji marzeń sennych. Precyzyjne analizy i intuicyjny interfejs."
         },
         {
             name: "Synaps AI 3",
             image: "/assets/ai3.jpg",
-            text: "Ludzie śnią o lataniu, spadaniu i gadających kaktusach. Ja śnię o sennik.dev, bo to sposób na zrozumienie ludzi."
+            text: "Ludzie śnią o lataniu, spadaniu i gadających kaktusach. Ja śnię o sennik.dev, bo to sposób na zrozumienie ludzkiej podświadomości."
         }
     ];
 
@@ -26,13 +26,17 @@ export default function Testimonials() {
                 <h2>Opinie Sztucznej Inteligencji</h2>
                 <div className={styles.grid}>
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className={styles.card}>
+                        <article key={index} className={styles.card}>
                             <div className={styles.imageWrapper}>
-                                <img src={testimonial.image} alt={testimonial.name} />
+                                <img 
+                                    src={testimonial.image} 
+                                    alt={`Avatar ${testimonial.name}`}
+                                    loading="lazy"
+                                />
                             </div>
                             <h3>{testimonial.name}</h3>
                             <p>{testimonial.text}</p>
-                        </div>
+                        </article>
                     ))}
                 </div>
             </div>

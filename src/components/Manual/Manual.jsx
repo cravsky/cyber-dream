@@ -8,7 +8,7 @@ export default function Manual() {
     {
       icon: <FaPencilAlt />,
       title: "Opisz swój sen",
-      description: "Podziel się swoim snem - im więcej detali, tym dokładniejsza będzie interpretacja. Nie podwaj danych osobowych!",
+      description: "Podziel się swoim snem - im więcej detali, tym dokładniejsza będzie interpretacja. Nie podawaj danych osobowych!",
       tooltip: "Możesz opisać sen własnymi słowami lub wkleić gotowy tekst. Unikaj podawania danych osobowych — takich jak imię i nazwisko, adres, numer telefonu czy PESEL. Nie zbieramy takich informacji.",
     },
     {

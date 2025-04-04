@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaHeart } from 'react-icons/fa';
 import styles from './Footer.module.css';
 import packageJson from '../../../package.json';
 import Feedback from '../Feedback/Feedback';
 
 export default function Footer() {
   const [showFeedback, setShowFeedback] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={styles.container}>
       <div className={styles.content}>
         <div className={styles.info}>
-          <p className={styles.copyright}>&copy; 2025 sennik.dev</p>
+          <p className={styles.copyright}>
+            &copy; {currentYear} sennik.dev
+            <span className={styles.heart}>
+              <FaHeart />
+            </span>
+          </p>
           <p className={styles.version}>v{packageJson.version}</p>
         </div>
         <nav className={styles.links}>
@@ -24,7 +30,8 @@ export default function Footer() {
             onClick={() => setShowFeedback(true)}
             className={styles.feedbackButton}
           >
-            <FaStar /> Oceń sennik.dev
+            <FaStar className={styles.starIcon} />
+            <span>Oceń sennik.dev</span>
           </button>
         </nav>
       </div>

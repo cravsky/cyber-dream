@@ -88,7 +88,8 @@ export default function Navbar({ disabled, onAnalyzeClick }) {
           disabled={disabled}
           tabIndex={disabled ? -1 : 0}
         >
-          Analizuj
+          <FaRegMoon className={styles.buttonIcon} />
+          <span>Analizuj</span>
         </button>
       </div>
     </nav>

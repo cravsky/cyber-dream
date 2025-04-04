@@ -10,8 +10,8 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  transition: all var(--transition-speed) ease;
+  z-index: var(--z-header);
+  transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .navbarWrapper.blurred {
@@ -25,17 +25,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: var(--spacing-4xl);
 }
 
 .content {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width-lg);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-padding-desktop);
 }
 
 @media (max-width: 768px) {
   .content {
-    padding: 0 1rem;
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  .main {
+    padding-top: var(--spacing-2xl);
   }
 }
