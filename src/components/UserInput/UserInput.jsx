@@ -9,8 +9,8 @@ export default function UserInput({
     setAdditionalInfo,
     showDreamError 
 }) {
-    const DREAM_LIMIT = 1600;
-    const ADDITIONAL_LIMIT = 200;
+    const DREAM_LIMIT = 1500;
+    const ADDITIONAL_LIMIT = 300;
     const [isRecording, setIsRecording] = useState(false);
     const [activeTextarea, setActiveTextarea] = useState(null);
 
