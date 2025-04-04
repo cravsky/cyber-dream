@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaDownload, FaStar } from 'react-icons/fa';
-import { jsPDF } from 'jspdf';
+import { FaStar } from 'react-icons/fa';
 import styles from './Success.module.css';
 import Feedback from '../Feedback/Feedback';
 
@@ -23,7 +22,7 @@ export default function Success() {
         const sessionId = localStorage.getItem("sessionId");
 
         if (!storedText) {
-            setInterpretation("❌ No dream data found. Please try again.");
+            setInterpretation("❌ Nie znaleziono danych snu. Spróbuj ponownie.");
             setIsLoading(false);
             return;
         }
@@ -33,11 +32,11 @@ export default function Success() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                  sessionId,
-                  text: storedText, 
-                  additional: storedAdditional 
+                    sessionId,
+                    text: storedText, 
+                    additional: storedAdditional 
                 }),
-              });
+            });
 
             const data = await response.json();
             setInterpretation(data.response);
@@ -47,36 +46,9 @@ export default function Success() {
             localStorage.removeItem("additional");
         } catch (error) {
             console.error("❌ Error processing interpretation:", error);
-            setInterpretation("Error processing dream interpretation.");
+            setInterpretation("Wystąpił błąd podczas przetwarzania interpretacji snu.");
             setIsLoading(false);
         }
-    };
-
-    const handleDownloadPDF = () => {
-        const dreamText = localStorage.getItem("text") || "Brak opisu snu.";
-        const doc = new jsPDF();
-    
-        // Title
-        doc.setFontSize(18);
-        doc.text("Interpretacja snu", 105, 20, null, null, "center");
-    
-        // Dream description
-        doc.setFontSize(14);
-        doc.text("Opis snu:", 10, 40);
-        doc.setFontSize(12);
-        const dreamLines = doc.splitTextToSize(dreamText, 180);
-        doc.text(dreamLines, 10, 50);
-    
-        // Interpretation content
-        const interpretationStartY = 60 + dreamLines.length * 6;
-        doc.setFontSize(14);
-        doc.text("Interpretacja:", 10, interpretationStartY);
-        doc.setFontSize(12);
-        const interpretationLines = doc.splitTextToSize(interpretation || "Brak interpretacji.", 180);
-        doc.text(interpretationLines, 10, interpretationStartY + 10);
-    
-        // Save as PDF
-        doc.save("interpretacja-snu.pdf");
     };
 
     return (
@@ -100,12 +72,6 @@ export default function Success() {
                                 >
                                     <FaStar /> Oceń interpretację
                                 </button>
-                                {/* <button 
-                                    className={styles.downloadButton}
-                                    onClick={handleDownloadPDF}
-                                >
-                                    <FaDownload /> Pobierz interpretację
-                                </button> */}
                             </div>
                         </>
                     )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRegMoon } from 'react-icons/fa';
 import styles from './CTA.module.css';
 
 export default function CTA({ onAnalyzeClick }) {
@@ -7,7 +8,8 @@ export default function CTA({ onAnalyzeClick }) {
       <div className={styles.content}>
         <p className={styles.text}>Odkryj ukryte znaczenie swoich snów już teraz!</p>
         <button className={styles.button} onClick={onAnalyzeClick}>
-          Analizuj Sen
+          <FaRegMoon className={styles.buttonIcon} />
+          <span>Analizuj Sen</span>
         </button>
       </div>
     </section>

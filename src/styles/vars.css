@@ -1,0 +1,79 @@
+:root {
+  /* Color Scheme - Night Sky Inspired */
+  --color-text: #F8F9FA;
+  --color-primary: #7B9EF9;
+  --color-secondary: #1A237E;
+  --color-dark: #0A1128;
+  --color-bg: #121B3B;
+  --color-accent: #B7C6FF;
+  --color-hover: #5C7CFA;
+  --color-stars: #FFFFFF;
+  
+  /* Error Colors */
+  --color-error: #dc2626;
+  --color-error-bg: rgba(220, 38, 38, 0.1);
+  --color-error-border: rgba(220, 38, 38, 0.3);
+  
+  /* Backgrounds */
+  --bg-overlay: rgba(10, 17, 40, 0.9);
+  --bg-modal: rgba(10, 17, 40, 0.8);
+  --bg-input: rgba(10, 17, 40, 0.6);
+  --bg-gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  --bg-gradient-accent: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  
+  /* Borders */
+  --border-primary: rgba(123, 158, 249, 0.1);
+  --border-hover: rgba(123, 158, 249, 0.2);
+  
+  /* Typography */
+  --font-main: 'Quicksand', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 4rem;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-timing: ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 15px rgba(123, 158, 249, 0.2);
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 15px;
+  --radius-lg: 30px;
+  --radius-full: 9999px;
+  
+  /* Z-index */
+  --z-modal: 2000;
+  --z-overlay: 1000;
+  --z-header: 100;
+  --z-base: 1;
+  
+  /* Layout */
+  --max-width-sm: 600px;
+  --max-width-md: 800px;
+  --max-width-lg: 1200px;
+  
+  /* Container Padding */
+  --container-padding-desktop: var(--spacing-2xl);
+  --container-padding-mobile: var(--spacing-md);
+}
