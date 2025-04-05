@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaTimes, FaStar } from 'react-icons/fa';
+import { FaTimes, FaStar, FaRegStar } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 import styles from './Feedback.module.css';
 
@@ -50,8 +50,8 @@ export default function Feedback({ onClose }) {
     return createPortal(
         <div className={styles.overlay}>
             <div className={styles.modal}>
-                <button 
-                    className={styles.closeButton} 
+                <button
+                    className={styles.closeButton}
                     onClick={onClose}
                     aria-label="Zamknij"
                 >
@@ -79,12 +79,19 @@ export default function Feedback({ onClose }) {
                                                 value={ratingValue}
                                                 onClick={() => setRating(ratingValue)}
                                             />
-                                            <FaStar
-                                                className={styles.star}
-                                                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                                                onMouseEnter={() => setHover(ratingValue)}
-                                                onMouseLeave={() => setHover(0)}
-                                            />
+                                            {ratingValue <= (hover || rating) ? (
+                                                <FaStar
+                                                    className={styles.star}
+                                                    onMouseEnter={() => setHover(ratingValue)}
+                                                    onMouseLeave={() => setHover(0)}
+                                                />
+                                            ) : (
+                                                <FaRegStar
+                                                    className={styles.star}
+                                                    onMouseEnter={() => setHover(ratingValue)}
+                                                    onMouseLeave={() => setHover(0)}
+                                                />
+                                            )}
                                         </label>
                                     );
                                 })}
@@ -103,8 +110,8 @@ export default function Feedback({ onClose }) {
                                     </span>
                                 )}
                             </div>
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 disabled={isSubmitting}
                                 className={styles.submitButton}
                             >
