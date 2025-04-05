@@ -2,12 +2,11 @@
   width: 100%;
 }
 
-.label {
-  display: block;
-  margin-bottom: 1.5rem;
+.inputGroup {
+  margin-bottom: var(--spacing-xl);
 }
 
-.label:last-child {
+.inputGroup:last-child {
   margin-bottom: 0;
 }
 
@@ -15,15 +14,61 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--spacing-sm);
 }
 
-.labelRow span {
-  font-size: 1.1rem;
+.label {
+  font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--color-primary);
   letter-spacing: 0.5px;
 }
+
+/* Uncomment to enable controls styling
+.controls {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.controlButton {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background: var(--bg-input);
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-primary);
+}
+
+.controlButton:hover:not(:disabled) {
+  background: var(--bg-modal);
+  color: var(--color-hover);
+  transform: translateY(-2px);
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.controlButton.recording {
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+*/
 
 .textareaWrapper {
   position: relative;
@@ -32,129 +77,145 @@
 
 .textarea {
   width: 100%;
-  background: rgba(10, 17, 40, 0.8);
+  background: var(--bg-input);
   color: var(--color-text);
   border: 2px solid var(--color-primary);
-  padding: 1.2rem;
-  border-radius: 15px;
-  font-size: 1.1rem;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
   font-family: var(--font-main);
   resize: vertical;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) var(--transition-timing);
   min-height: 120px;
-}
-
-.counter {
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--color-text);
-  opacity: 0.7;
-  font-family: monospace;
-  background: rgba(10, 17, 40, 0.8);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  pointer-events: none;
-}
-
-.label.error .textarea {
-  border-color: #dc2626;
-}
-
-.errorMessage {
-  color: #dc2626;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  display: block;
-}
-
-.label:first-child .textarea {
-  height: 200px;
-  min-height: 150px;
-}
-
-.label:last-child .textarea {
-  height: 100px;
-  min-height: 60px;
-}
-
-.textarea:focus {
-  outline: none;
-  border-color: var(--color-hover);
-  box-shadow: 0 0 20px rgba(123, 158, 249, 0.2);
 }
 
 .textarea::placeholder {
   color: rgba(183, 198, 255, 0.5);
 }
 
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.counter {
+  position: absolute;
+  bottom: var(--spacing-sm);
+  right: var(--spacing-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  opacity: 0.7;
+  font-family: monospace;
+  background: var(--bg-input);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+.inputGroup.error .textarea {
+  border-color: var(--color-error);
+}
+
+.errorMessage {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-sm);
+  display: block;
+}
+
+.inputGroup:first-child .textarea {
+  height: 180px;
+  min-height: 120px;
+}
+
+.inputGroup:last-child .textarea {
+  height: 90px;
+  min-height: 60px;
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 0.5rem;
+    padding: var(--spacing-xs);
+  }
+
+  .inputGroup {
+    margin-bottom: var(--spacing-lg);
   }
 
   .label {
-    margin-bottom: 1rem;
+    font-size: var(--font-size-base);
   }
 
-  .labelRow span {
-    font-size: 0.95rem;
+  /* Uncomment to enable responsive controls
+  .controlButton {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-base);
   }
+  */
 
   .textarea {
-    padding: 0.8rem;
-    font-size: 0.95rem;
-    border-radius: 12px;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-md);
   }
 
-  .label:first-child .textarea {
-    height: 180px;
-    min-height: 120px;
+  .inputGroup:first-child .textarea {
+    height: 160px;
+    min-height: 100px;
   }
 
-  .label:last-child .textarea {
-    height: 80px;
-    min-height: 80px;
+  .inputGroup:last-child .textarea {
+    height: 70px;
+    min-height: 60px;
   }
 
   .errorMessage {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
   }
 
   .counter {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
-    bottom: 0.3rem;
-    right: 0.5rem;
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    bottom: var(--spacing-xs);
+    right: var(--spacing-sm);
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0.25rem;
+    padding: 0;
+  }
+
+  .inputGroup {
+    margin-bottom: var(--spacing-md);
   }
 
   .label {
-    margin-bottom: 0.8rem;
+    font-size: var(--font-size-base);
   }
 
-  .labelRow span {
-    font-size: 0.9rem;
+  /* Uncomment to enable responsive controls
+  .controlButton {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-sm);
   }
+  */
 
   .textarea {
-    padding: 0.7rem;
-    font-size: 0.9rem;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-base);
   }
 
-  .label:first-child .textarea {
-    height: 150px;
+  .inputGroup:first-child .textarea {
+    height: 140px;
     min-height: 100px;
   }
 
-  .label:last-child .textarea {
-    height: 80px;
-    min-height: 80px;
+  .inputGroup:last-child .textarea {
+    height: 70px;
+    min-height: 60px;
   }
 }
