@@ -3,10 +3,10 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
   return (
-    <section className={`${styles.hero} hero`}>
+    <section className={`${styles.hero} hero animate-fadeIn`}>
       <div className={styles.content}>
-        <h1>Odkryj znaczenie snu</h1>
-        <p>Sztuczna inteligencja rozwieje tajemnicę</p>
+        <h1 className="animate-slideIn">Odkryj znaczenie snu</h1>
+        <p className="animate-slideUp">Sztuczna inteligencja rozwieje tajemnicę</p>
       </div>
       <div className={styles.imageWrapper}>
         <img 

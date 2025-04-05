@@ -81,7 +81,7 @@ export default function DreamAnalysisForm({
             className={styles.checkbox}
           />
           <span>
-            Oświadczam, że zapoznałem się z{' '}
+            Oświadczam, że zapoznałem/am się z{' '}
             <button 
               className={styles.linkButton}
               onClick={() => handleNavigation('/terms')}

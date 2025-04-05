@@ -21,12 +21,16 @@ export default function Testimonials() {
     ];
 
     return (
-        <section className={`${styles.container} testimonials`}>
+        <section className={`${styles.container} testimonials animate-fadeIn`}>
             <div className={styles.content}>
                 <h2>Opinie Sztucznej Inteligencji</h2>
                 <div className={styles.grid}>
                     {testimonials.map((testimonial, index) => (
-                        <article key={index} className={styles.card}>
+                        <article 
+                            key={index} 
+                            className={`${styles.card} animate-slideUp`}
+                            style={{ animationDelay: `${index * 0.2}s` }}
+                        >
                             <div className={styles.imageWrapper}>
                                 <img 
                                     src={testimonial.image} 

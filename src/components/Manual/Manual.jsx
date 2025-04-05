@@ -32,12 +32,12 @@ export default function Manual() {
   ];
 
   return (
-    <section className={`${styles.container} manual`}>
+    <section className={`${styles.container} manual animate-fadeIn`}>
       <div className={styles.content}>
         <h2>Jak to działa?</h2>
         <div className={styles.timeline}>
           {steps.map((step, index) => (
-            <div key={index} className={styles.step}>
+            <div key={index} className={`${styles.step} animate-slideIn`} style={{ animationDelay: `${index * 0.2}s` }}>
               <div className={styles.stepContent}>
                 <div className={styles.header}>
                   <div className={styles.iconContainer}>

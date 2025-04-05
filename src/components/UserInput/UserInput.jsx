@@ -22,12 +22,78 @@ export default function UserInput({
         }
     };
 
+    /* Uncomment to enable file upload feature
+    const handleFileClick = async (e, setter, limit) => {
+        e.stopPropagation();
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.txt';
+        
+        input.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const text = await file.text();
+                if (text.length <= limit) {
+                    setter(text);
+                } else {
+                    alert(`Text exceeds limit of ${limit} characters`);
+                }
+            }
+        };
+        
+        input.click();
+    };
+    */
+
+    /* Uncomment to enable voice recording feature
+    const startSpeechRecognition = (e, setter, limit) => {
+        e.stopPropagation();
+        
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Speech recognition is not supported in this browser.');
+            return;
+        }
+
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        
+        recognition.onstart = () => {
+            setIsRecording(true);
+            setActiveTextarea(setter);
+        };
+        
+        recognition.onresult = (event) => {
+            const transcript = Array.from(event.results)
+                .map(result => result[0].transcript)
+                .join('');
+                
+            if (transcript.length <= limit) {
+                setter(transcript);
+            }
+        };
+        
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            setIsRecording(false);
+            setActiveTextarea(null);
+        };
+        
+        recognition.onend = () => {
+            setIsRecording(false);
+            setActiveTextarea(null);
+        };
+        
+        recognition.start();
+    };
+    */
+
     return (
         <div className={styles.container} onClick={(e) => e.stopPropagation()}>
-            <div className={`${styles.label} ${showDreamError ? styles.error : ''}`}>
+            <div className={`${styles.inputGroup} ${showDreamError ? styles.error : ''}`}>
                 <div className={styles.labelRow}>
-                    <span>Opisz swój sen</span>
-                    {/* Hide controls for now
+                    <span className={styles.label}>Opisz swój sen</span>
+                    {/* Uncomment to enable input controls
                     <div className={styles.controls}>
                         <button
                             type="button"
@@ -70,10 +136,10 @@ export default function UserInput({
                     </span>
                 )}
             </div>
-            <div className={styles.label}>
+            <div className={styles.inputGroup}>
                 <div className={styles.labelRow}>
-                    <span>Dodatkowe informacje</span>
-                    {/* Hide controls for now
+                    <span className={styles.label}>Dodatkowe informacje</span>
+                    {/* Uncomment to enable input controls
                     <div className={styles.controls}>
                         <button
                             type="button"

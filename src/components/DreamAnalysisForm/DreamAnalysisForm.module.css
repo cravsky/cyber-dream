@@ -1,177 +1,194 @@
 .container {
-    width: 100%;
-  }
-  
+  width: 100%;
+}
+
+.container h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  background: var(--bg-gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.emailContainer {
+  margin-top: var(--spacing-lg);
+}
+
+.emailLabel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.emailLabel span {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.emailInput {
+  width: 100%;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  border: 1px solid var(--color-primary);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-speed) var(--transition-timing);
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.emailLabel.error .emailInput {
+  border-color: var(--color-error);
+}
+
+.errorMessage {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.termsContainer {
+  margin-top: var(--spacing-lg);
+}
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-speed) var(--transition-timing);
+}
+
+.termsLabel.error {
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+}
+
+.termsLabel span {
+  line-height: 1.4;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-timing);
+}
+
+.linkButton:hover {
+  color: var(--color-accent);
+  transform: none;
+  box-shadow: none;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.cancelButton,
+.submitButton {
+  flex: 1;
+  font-size: var(--font-size-base);
+  padding: var(--spacing-md);
+}
+
+.cancelButton {
+  background: var(--bg-input);
+  border: 1px solid var(--color-primary);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: var(--bg-modal);
+}
+
+.submitButton {
+  background: var(--bg-gradient-primary);
+}
+
+.submitButton:disabled,
+.cancelButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
   .container h2 {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-2xl);
-    text-align: center;
-    background: var(--bg-gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.5px;
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-lg);
   }
-  
-  .emailContainer {
-    margin-top: var(--spacing-xl);
-  }
-  
-  .emailLabel {
-    display: flex;
+
+  .actions {
     flex-direction: column;
     gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
   }
-  
-  .emailLabel span {
-    color: var(--color-primary);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  
-  .emailInput {
-    width: 100%;
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    background: var(--bg-input);
-    border: 1px solid var(--color-primary);
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    transition: all var(--transition-speed) var(--transition-timing);
-  }
-  
-  .emailInput:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-glow);
-  }
-  
-  .emailLabel.error .emailInput {
-    border-color: var(--color-error);
-  }
-  
-  .errorMessage {
-    color: var(--color-error);
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-xs);
-  }
-  
-  .termsContainer {
-    margin-top: var(--spacing-xl);
-  }
-  
-  .termsLabel {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    padding: var(--spacing-sm);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-speed) var(--transition-timing);
-  }
-  
-  .termsLabel.error {
-    background: var(--color-error-bg);
-    border: 1px solid var(--color-error-border);
-  }
-  
-  .termsLabel span {
-    line-height: 1.4;
-  }
-  
-  .linkButton {
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--color-primary);
-    font-size: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    text-decoration: none;
-    transition: color var(--transition-speed) var(--transition-timing);
-  }
-  
-  .linkButton:hover {
-    color: var(--color-accent);
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .checkbox {
-    width: 16px;
-    height: 16px;
-    margin-top: 2px;
-    cursor: pointer;
-    accent-color: var(--color-primary);
-  }
-  
-  .actions {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-2xl);
-  }
-  
+
   .cancelButton,
   .submitButton {
-    flex: 1;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm);
+  }
+
+  .emailLabel span {
+    font-size: var(--font-size-base);
+  }
+
+  .emailInput {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-base);
+  }
+
+  .termsLabel {
+    font-size: var(--font-size-base);
+  }
+
+  .checkbox {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container h2 {
     font-size: var(--font-size-lg);
-    padding: var(--spacing-md);
   }
-  
-  .cancelButton {
-    background: var(--bg-input);
-    border: 1px solid var(--color-primary);
+
+  .emailLabel span,
+  .termsLabel {
+    font-size: var(--font-size-base);
   }
-  
-  .cancelButton:hover:not(:disabled) {
-    background: var(--bg-modal);
-  }
-  
+
+  .emailInput,
+  .cancelButton,
   .submitButton {
-    background: var(--bg-gradient-primary);
+    font-size: var(--font-size-base);
   }
-  
-  .submitButton:disabled,
-  .cancelButton:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-  }
-  
-  @media (max-width: 768px) {
-    .container h2 {
-      font-size: var(--font-size-2xl);
-      margin-bottom: var(--spacing-xl);
-    }
-  
-    .actions {
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-xl);
-    }
-  
-    .cancelButton,
-    .submitButton {
-      font-size: var(--font-size-base);
-      padding: var(--spacing-sm);
-    }
-  
-    .emailLabel span {
-      font-size: var(--font-size-base);
-    }
-  
-    .emailInput {
-      padding: var(--spacing-sm);
-      font-size: var(--font-size-sm);
-    }
-  
-    .termsLabel {
-      font-size: var(--font-size-sm);
-    }
-  
-    .checkbox {
-      width: 14px;
-      height: 14px;
-    }
-  }
+}
