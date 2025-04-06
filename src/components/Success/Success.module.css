@@ -63,7 +63,7 @@
   height: 40px;
   border: 3px solid var(--bg-input);
   border-top-color: var(--color-primary);
-  border-radius: var(--radius-full);
+  border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
@@ -98,6 +98,11 @@
 
 .feedbackButton:hover {
   background: var(--bg-modal);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {
