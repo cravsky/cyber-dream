@@ -1,9 +1,12 @@
 import React from 'react';
 import { FaPencilAlt, FaCreditCard, FaBrain, FaFileAlt, FaInfoCircle } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
+import useInView from '../../hooks/useInView';
 import styles from './Manual.module.css';
 
 export default function Manual() {
+  const [ref, isInView] = useInView({ threshold: 0.2 });
+
   const steps = [
     {
       icon: <FaPencilAlt />,
@@ -32,12 +35,15 @@ export default function Manual() {
   ];
 
   return (
-    <section className={`${styles.container} manual animate-fadeIn`}>
+    <section 
+      ref={ref}
+      className={`${styles.container} manual animate-fadeIn ${isInView ? 'in-view' : ''}`}
+    >
       <div className={styles.content}>
         <h2>Jak to działa?</h2>
-        <div className={styles.timeline}>
+        <div className={`${styles.timeline} stagger-children ${isInView ? 'in-view' : ''}`}>
           {steps.map((step, index) => (
-            <div key={index} className={`${styles.step} animate-slideIn`} style={{ animationDelay: `${index * 0.2}s` }}>
+            <div key={index} className={styles.step}>
               <div className={styles.stepContent}>
                 <div className={styles.header}>
                   <div className={styles.iconContainer}>
