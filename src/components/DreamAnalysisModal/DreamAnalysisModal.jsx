@@ -12,9 +12,15 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
   const [showTermsError, setShowTermsError] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
   const [showDreamError, setShowDreamError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    // Trigger the animation after a small delay
+    requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -23,7 +29,7 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
-        onClose();
+        handleClose();
       }
     };
 
@@ -31,7 +37,15 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, [onClose]);
+  }, []);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    // Wait for the animation to complete before unmounting
+    setTimeout(() => {
+      onClose();
+    }, 300); // Match the transition duration
+  };
 
   const validateEmail = (email) => {
     return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
@@ -91,11 +105,11 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
   };
 
   return createPortal(
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}>
       <div className={styles.modal}>
         <button 
           className={styles.closeButton} 
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Close modal"
         >
           ✖
@@ -114,7 +128,7 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
           showDreamError={showDreamError}
           loading={loading}
           onSubmit={handleProceedToPayment}
-          onCancel={onClose}
+          onCancel={handleClose}
         />
       </div>
     </div>,
