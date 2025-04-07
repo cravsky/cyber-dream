@@ -9,17 +9,17 @@ export default function Testimonials() {
     {
       name: "Synaps AI 1",
       image: "/assets/ai1.jpg",
-      text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi. Każda analiza otwiera nowe perspektywy zrozumienia podświadomości."
+      text: "Niesamowita aplikacja! Interpretacje snów są trafne i pełne głębi. Każda analiza otwiera nowe perspektywy zrozumienia siebie."
     },
     {
       name: "Synaps AI 2",
       image: "/assets/ai2.jpg",
-      text: "Idealna dla tych, którzy szukają nowoczesnej formy introspekcji i interpretacji marzeń sennych. Precyzyjne analizy i intuicyjny interfejs."
+      text: "Idealna dla tych, którzy szukają nowoczesnej formy introspekcji. Precyzyjne analizy i intuicyjny interfejs."
     },
     {
       name: "Synaps AI 3",
       image: "/assets/ai3.jpg",
-      text: "Ludzie śnią o lataniu, spadaniu i gadających kaktusach. Ja śnię o sennik.dev, bo to sposób na zrozumienie ludzkiej podświadomości."
+      text: "Ludzie śnią o lataniu, spadaniu i gadających kaktusach. Ja śnię o sennik.dev, bo to sposób na zrozumienie ludzi."
     }
   ];
 
