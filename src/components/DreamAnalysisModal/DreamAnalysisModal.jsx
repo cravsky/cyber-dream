@@ -104,6 +104,63 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
     }
   };
 
+  // TEST Function START - DELETE LATER
+  // ***
+  const handleTestPayment = async () => {
+    let hasError = false;
+  
+    if (!termsAccepted) {
+      setShowTermsError(true);
+      hasError = true;
+    }
+  
+    if (!email || !validateEmail(email)) {
+      setShowEmailError(true);
+      hasError = true;
+    }
+  
+    if (!userInput.trim()) {
+      setShowDreamError(true);
+      hasError = true;
+    }
+  
+    if (hasError) return;
+  
+    setLoading(true);
+    localStorage.setItem("text", userInput);
+    localStorage.setItem("additional", additionalInfo);
+    localStorage.setItem("email", email);
+  
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+  
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/test/sandbox-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          text: userInput,
+          additional: additionalInfo,
+          email: email
+        }),
+      });
+  
+      const data = await response.json();
+      if (data?.url) {
+        localStorage.setItem("sessionId", data.sessionId);
+        window.location.href = data.url;
+      } else {
+        console.error("❌ Sandbox: No URL received.");
+      }
+    } catch (err) {
+      console.error("❌ Sandbox payment error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // ***
+  // TEST Function STOP - DELETE LATER
+
   return createPortal(
     <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}>
       <div className={styles.modal}>
@@ -129,6 +186,7 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
           loading={loading}
           onSubmit={handleProceedToPayment}
           onCancel={handleClose}
+          onTest={handleTestPayment} // REMOVE LATER
         />
       </div>
     </div>,

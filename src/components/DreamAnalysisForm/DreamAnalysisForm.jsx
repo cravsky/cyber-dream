@@ -17,7 +17,8 @@ export default function DreamAnalysisForm({
   showDreamError,
   loading,
   onSubmit,
-  onCancel
+  onCancel,
+  onTest // REMOVE LATER
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -112,6 +113,15 @@ export default function DreamAnalysisForm({
           disabled={loading}
         >
           {loading ? 'Przetwarzanie...' : 'Rozpocznij analizę'}
+        </button>
+        {/* TEST BUTTON REMOVE LATER */}
+        <button 
+          className={styles.submitButton} 
+          onClick={onTest} 
+          disabled={loading}
+          style={{ backgroundColor: '#888', marginLeft: '1rem' }}
+        >
+          TEST
         </button>
       </div>
     </div>
