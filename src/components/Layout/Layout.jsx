@@ -12,11 +12,13 @@ import Terms from '../Terms/Terms';
 import Privacy from '../Privacy/Privacy';
 import DreamAnalysisModal from '../DreamAnalysisModal/DreamAnalysisModal';
 import styles from './Layout.module.css';
+import ScrollIndicator from '../ScrollIndicator/ScrollIndicator';
 
 function HomePage({ onAnalyzeClick }) {
   return (
     <>
       <Hero />
+      <ScrollIndicator />
       <Manual />
       <CTA onAnalyzeClick={onAnalyzeClick} />
       <Testimonials />
