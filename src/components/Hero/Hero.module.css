@@ -70,7 +70,7 @@
 }
 
 .hero p {
-  font-size: calc(var(--font-size-2xl));
+  font-size: calc(var(--font-size-3xl));
   color: var(--color-text);
   max-width: var(--max-width-sm);
   margin: 0 auto;
