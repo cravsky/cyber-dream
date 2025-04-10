@@ -58,7 +58,7 @@ export default function DreamAnalysisForm({
       />
       <div className={styles.emailContainer}>
         <label className={`${styles.emailLabel} ${showEmailError ? styles.error : ''}`}>
-          <span>Adres e-mail do faktury</span>
+          <span>Adres e-mail do obsługi płatnosci</span>
           <input
             type="email"
             value={email}
