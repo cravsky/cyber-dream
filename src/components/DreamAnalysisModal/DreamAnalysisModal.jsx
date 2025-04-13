@@ -145,8 +145,11 @@ export default function DreamAnalysisModal({ onClose, initialData }) {
       });
   
       const data = await response.json();
-      if (data?.url) {
+      if (data && data.url) {
         localStorage.setItem("sessionId", data.sessionId);
+        localStorage.setItem("text", userInput);
+        localStorage.setItem("additional", additionalInfo);
+        localStorage.setItem("email", email);
         window.location.href = data.url;
       } else {
         console.error("❌ Sandbox: No URL received.");
