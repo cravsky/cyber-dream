@@ -18,14 +18,35 @@ export default function Success() {
     const [additional, setAdditional] = useState('');
 
     useEffect(() => {
+        // 🌐 Check for test session from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const testSessionId = urlParams.get("testSession");
+
+        if (testSessionId) {
+            localStorage.setItem("sessionId", testSessionId);
+        }
+        
+        const sessionId = localStorage.getItem("sessionId");
+    
+        // ✅ Kick user out if there's no sessionId
+        if (!sessionId) {
+            navigate('/');
+            return;
+        }
+    
         const storedText = localStorage.getItem("text") || "Brak opisu snu.";
         const storedAdditional = localStorage.getItem("additional") || "Brak dodatkowych informacji.";
-
+    
         setDreamText(storedText);
         setAdditional(storedAdditional);
-
+    
         fetchInterpretation(storedText, storedAdditional);
+    
+        // Optionally clear localStorage so reload doesn't retrigger
+        // localStorage.removeItem("text");
+        // localStorage.removeItem("additional");
     }, []);
+    
 
     const fetchInterpretation = async (text, additional) => {
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
