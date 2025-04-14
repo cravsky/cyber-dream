@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { FaFileUpload } from 'react-icons/fa';
 import styles from './UserInput.module.css';
 
-export default function UserInput({ 
-    userInput, 
-    setUserInput, 
-    additionalInfo, 
+export default function UserInput({
+    userInput,
+    setUserInput,
+    additionalInfo,
     setAdditionalInfo,
-    showDreamError 
+    showDreamError
 }) {
     const DREAM_LIMIT = 1500;
     const ADDITIONAL_LIMIT = 300;
@@ -50,18 +50,20 @@ export default function UserInput({
             <div className={`${styles.inputGroup} ${showDreamError ? styles.error : ''}`}>
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Opisz swój sen</span>
-                    <div className={styles.controls}>
-                        <label className={styles.controlButton} title="Wczytaj plik .txt">
-                            <FaFileUpload />
-                            <input
-                                type="file"
-                                ref={fileInputRef1}
-                                accept=".txt,text/plain,text/*"
-                                style={{ display: 'none' }}
-                                onChange={(e) => handleFileChange(e, setUserInput, DREAM_LIMIT)}
-                            />
-                        </label>
-                    </div>
+                    {!isMobile && (
+                        <div className={styles.controls}>
+                            <label className={styles.controlButton} title="Wczytaj plik .txt">
+                                <FaFileUpload />
+                                <input
+                                    type="file"
+                                    ref={fileInputRef1}
+                                    accept=".txt,text/plain,text/*"
+                                    style={{ display: 'none' }}
+                                    onChange={(e) => handleFileChange(e, setUserInput, DREAM_LIMIT)}
+                                />
+                            </label>
+                        </div>
+                    )}
                 </div>
                 <div className={styles.textareaWrapper}>
                     <textarea
@@ -89,18 +91,20 @@ export default function UserInput({
             <div className={styles.inputGroup}>
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Dodatkowe informacje</span>
-                    <div className={styles.controls}>
-                        <label className={styles.controlButton} title="Wczytaj plik .txt">
-                            <FaFileUpload />
-                            <input
-                                type="file"
-                                ref={fileInputRef2}
-                                accept=".txt,text/plain,text/*"
-                                style={{ display: 'none' }}
-                                onChange={(e) => handleFileChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                            />
-                        </label>
-                    </div>
+                    {!isMobile && (
+                        <div className={styles.controls}>
+                            <label className={styles.controlButton} title="Wczytaj plik .txt">
+                                <FaFileUpload />
+                                <input
+                                    type="file"
+                                    ref={fileInputRef2}
+                                    accept=".txt,text/plain,text/*"
+                                    style={{ display: 'none' }}
+                                    onChange={(e) => handleFileChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
+                                />
+                            </label>
+                        </div>
+                    )}
                 </div>
                 <div className={styles.textareaWrapper}>
                     <textarea
