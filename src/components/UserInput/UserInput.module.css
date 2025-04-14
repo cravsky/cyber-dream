@@ -24,7 +24,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Uncomment to enable controls styling
 .controls {
   display: flex;
   gap: var(--spacing-sm);
@@ -68,7 +67,7 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-*/
+
 
 .textareaWrapper {
   position: relative;
@@ -147,13 +146,13 @@
     font-size: var(--font-size-base);
   }
 
-  /* Uncomment to enable responsive controls
+  Uncomment to enable responsive controls
   .controlButton {
     width: 32px;
     height: 32px;
     font-size: var(--font-size-base);
   }
-  */
+ 
 
   .textarea {
     padding: var(--spacing-md);
@@ -196,13 +195,13 @@
     font-size: var(--font-size-base);
   }
 
-  /* Uncomment to enable responsive controls
+  Uncomment to enable responsive controls
   .controlButton {
     width: 28px;
     height: 28px;
     font-size: var(--font-size-sm);
   }
-  */
+ 
 
   .textarea {
     padding: var(--spacing-sm);

@@ -13,6 +13,7 @@ export default function UserInput({
     const ADDITIONAL_LIMIT = 300;
     const [isRecording, setIsRecording] = useState(false);
     const [activeTextarea, setActiveTextarea] = useState(null);
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const handleInputChange = (e, setter, limit) => {
         e.stopPropagation();
@@ -22,13 +23,26 @@ export default function UserInput({
         }
     };
 
-    /* Uncomment to enable file upload feature
+    const handleFileChange = async (e, setter, limit) => {
+        const file = e.target.files[0];
+        if (file) {
+            const text = await file.text();
+            if (text.length <= limit) {
+                setter(text);
+            } else {
+                alert(`Text exceeds limit of ${limit} characters`);
+            }
+        }
+    };
+
     const handleFileClick = async (e, setter, limit) => {
+        if (isMobile) return;
+
         e.stopPropagation();
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.txt';
-        
+
         input.onchange = async (e) => {
             const file = e.target.files[0];
             if (file) {
@@ -40,15 +54,13 @@ export default function UserInput({
                 }
             }
         };
-        
+
         input.click();
     };
-    */
 
-    /* Uncomment to enable voice recording feature
     const startSpeechRecognition = (e, setter, limit) => {
         e.stopPropagation();
-        
+
         if (!('webkitSpeechRecognition' in window)) {
             alert('Speech recognition is not supported in this browser.');
             return;
@@ -57,68 +69,80 @@ export default function UserInput({
         const recognition = new window.webkitSpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
-        
+
         recognition.onstart = () => {
             setIsRecording(true);
             setActiveTextarea(setter);
         };
-        
+
         recognition.onresult = (event) => {
             const transcript = Array.from(event.results)
                 .map(result => result[0].transcript)
                 .join('');
-                
+
             if (transcript.length <= limit) {
                 setter(transcript);
             }
         };
-        
+
         recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
             setIsRecording(false);
             setActiveTextarea(null);
         };
-        
+
         recognition.onend = () => {
             setIsRecording(false);
             setActiveTextarea(null);
         };
-        
+
         recognition.start();
     };
-    */
 
     return (
         <div className={styles.container} onClick={(e) => e.stopPropagation()}>
+            {/* Dream Description */}
             <div className={`${styles.inputGroup} ${showDreamError ? styles.error : ''}`}>
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Opisz swój sen</span>
-                    {/* Uncomment to enable input controls
                     <div className={styles.controls}>
-                        <button
-                            type="button"
-                            onClick={(e) => handleFileClick(e, setUserInput, DREAM_LIMIT)}
-                            className={styles.controlButton}
-                            title="Wczytaj plik tekstowy"
-                        >
-                            <FaFileUpload />
-                        </button>
-                        <button
-                            type="button"
-                            onClick={(e) => startSpeechRecognition(e, setUserInput, DREAM_LIMIT)}
-                            className={`${styles.controlButton} ${isRecording && activeTextarea === setUserInput ? styles.recording : ''}`}
-                            title="Rozpocznij dyktowanie"
-                            disabled={isRecording && activeTextarea !== setUserInput}
-                        >
-                            {isRecording && activeTextarea === setUserInput ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
-                        </button>
+                        {isMobile ? (
+                            <label className={styles.controlButton} title="Wczytaj plik tekstowy">
+                                <FaFileUpload />
+                                <input
+                                    type="file"
+                                    accept=".txt"
+                                    style={{ display: 'none' }}
+                                    onChange={(e) => handleFileChange(e, setUserInput, DREAM_LIMIT)}
+                                />
+                            </label>
+                        ) : (
+                            <button
+                                type="button"
+                                onClick={(e) => handleFileClick(e, setUserInput, DREAM_LIMIT)}
+                                className={styles.controlButton}
+                                title="Wczytaj plik tekstowy"
+                            >
+                                <FaFileUpload />
+                            </button>
+                        )}
+                        {isMobile && (
+                            <button
+                                type="button"
+                                onClick={(e) => startSpeechRecognition(e, setUserInput, DREAM_LIMIT)}
+                                className={`${styles.controlButton} ${isRecording && activeTextarea === setUserInput ? styles.recording : ''}`}
+                                title="Rozpocznij dyktowanie"
+                                disabled={isRecording && activeTextarea !== setUserInput}
+                            >
+                                {isRecording && activeTextarea === setUserInput ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
+                            </button>
+                        )}
                     </div>
-                    */}
                 </div>
                 <div className={styles.textareaWrapper}>
                     <textarea
                         className={styles.textarea}
-                        placeholder="Śniło mi się, że spaceruję po lesie pełnym drzew, które świecą delikatnym, niebieskim światłem. Nagle napotykam lisa, który mówi ludzkim głosem i zaprasza mnie do ukrytej biblioteki..."
+                        placeholder="Śniło mi się, że spaceruję po lesie pełnym drzew..."
                         value={userInput}
                         onChange={(e) => handleInputChange(e, setUserInput, DREAM_LIMIT)}
                         maxLength={DREAM_LIMIT}
@@ -136,35 +160,49 @@ export default function UserInput({
                     </span>
                 )}
             </div>
+
+            {/* Additional Info */}
             <div className={styles.inputGroup}>
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Dodatkowe informacje</span>
-                    {/* Uncomment to enable input controls
                     <div className={styles.controls}>
-                        <button
-                            type="button"
-                            onClick={(e) => handleFileClick(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                            className={styles.controlButton}
-                            title="Wczytaj plik tekstowy"
-                        >
-                            <FaFileUpload />
-                        </button>
-                        <button
-                            type="button"
-                            onClick={(e) => startSpeechRecognition(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                            className={`${styles.controlButton} ${isRecording && activeTextarea === setAdditionalInfo ? styles.recording : ''}`}
-                            title="Rozpocznij dyktowanie"
-                            disabled={isRecording && activeTextarea !== setAdditionalInfo}
-                        >
-                            {isRecording && activeTextarea === setAdditionalInfo ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
-                        </button>
+                        {isMobile ? (
+                            <label className={styles.controlButton} title="Wczytaj plik tekstowy">
+                                <FaFileUpload />
+                                <input
+                                    type="file"
+                                    accept=".txt"
+                                    style={{ display: 'none' }}
+                                    onChange={(e) => handleFileChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
+                                />
+                            </label>
+                        ) : (
+                            <button
+                                type="button"
+                                onClick={(e) => handleFileClick(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
+                                className={styles.controlButton}
+                                title="Wczytaj plik tekstowy"
+                            >
+                                <FaFileUpload />
+                            </button>
+                        )}
+                        {isMobile && (
+                            <button
+                                type="button"
+                                onClick={(e) => startSpeechRecognition(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
+                                className={`${styles.controlButton} ${isRecording && activeTextarea === setAdditionalInfo ? styles.recording : ''}`}
+                                title="Rozpocznij dyktowanie"
+                                disabled={isRecording && activeTextarea !== setAdditionalInfo}
+                            >
+                                {isRecording && activeTextarea === setAdditionalInfo ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
+                            </button>
+                        )}
                     </div>
-                    */}
                 </div>
                 <div className={styles.textareaWrapper}>
                     <textarea
                         className={styles.textarea}
-                        placeholder="Teresa. Jestem dojrzałą kobietą, szukam lepszej pracy. Sen był przyjemny."
+                        placeholder="Teresa. Jestem dojrzałą kobietą, szukam lepszej pracy..."
                         value={additionalInfo}
                         onChange={(e) => handleInputChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
                         maxLength={ADDITIONAL_LIMIT}
