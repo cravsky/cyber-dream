@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaFileUpload, FaMicrophone, FaSpinner } from 'react-icons/fa';
+import { FaFileUpload } from 'react-icons/fa';
 import styles from './UserInput.module.css';
 
 export default function UserInput({ 
@@ -11,9 +11,10 @@ export default function UserInput({
 }) {
     const DREAM_LIMIT = 1500;
     const ADDITIONAL_LIMIT = 300;
-    const [isRecording, setIsRecording] = useState(false);
-    const [activeTextarea, setActiveTextarea] = useState(null);
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    const [fileInputRef1] = useState(() => React.createRef());
+    const [fileInputRef2] = useState(() => React.createRef());
 
     const handleInputChange = (e, setter, limit) => {
         e.stopPropagation();
@@ -25,78 +26,22 @@ export default function UserInput({
 
     const handleFileChange = async (e, setter, limit) => {
         const file = e.target.files[0];
-        if (file) {
+        if (!file) return;
+
+        const extension = file.name.split('.').pop().toLowerCase();
+
+        if (['txt'].includes(extension)) {
             const text = await file.text();
             if (text.length <= limit) {
                 setter(text);
             } else {
-                alert(`Text exceeds limit of ${limit} characters`);
+                alert(`Tekst przekracza limit ${limit} znaków`);
             }
+        } else if (['doc', 'docx'].includes(extension)) {
+            alert("Obsługa .doc i .docx jest jeszcze w wersji eksperymentalnej – spróbuj przekleić tekst ręcznie.");
+        } else {
+            alert("Obsługiwane są tylko pliki .txt, .doc, .docx");
         }
-    };
-
-    const handleFileClick = async (e, setter, limit) => {
-        if (isMobile) return;
-
-        e.stopPropagation();
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.txt';
-
-        input.onchange = async (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const text = await file.text();
-                if (text.length <= limit) {
-                    setter(text);
-                } else {
-                    alert(`Text exceeds limit of ${limit} characters`);
-                }
-            }
-        };
-
-        input.click();
-    };
-
-    const startSpeechRecognition = (e, setter, limit) => {
-        e.stopPropagation();
-
-        if (!('webkitSpeechRecognition' in window)) {
-            alert('Speech recognition is not supported in this browser.');
-            return;
-        }
-
-        const recognition = new window.webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-
-        recognition.onstart = () => {
-            setIsRecording(true);
-            setActiveTextarea(setter);
-        };
-
-        recognition.onresult = (event) => {
-            const transcript = Array.from(event.results)
-                .map(result => result[0].transcript)
-                .join('');
-
-            if (transcript.length <= limit) {
-                setter(transcript);
-            }
-        };
-
-        recognition.onerror = (event) => {
-            console.error('Speech recognition error:', event.error);
-            setIsRecording(false);
-            setActiveTextarea(null);
-        };
-
-        recognition.onend = () => {
-            setIsRecording(false);
-            setActiveTextarea(null);
-        };
-
-        recognition.start();
     };
 
     return (
@@ -106,37 +51,16 @@ export default function UserInput({
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Opisz swój sen</span>
                     <div className={styles.controls}>
-                        {isMobile ? (
-                            <label className={styles.controlButton} title="Wczytaj plik tekstowy">
-                                <FaFileUpload />
-                                <input
-                                    type="file"
-                                    accept=".txt"
-                                    style={{ display: 'none' }}
-                                    onChange={(e) => handleFileChange(e, setUserInput, DREAM_LIMIT)}
-                                />
-                            </label>
-                        ) : (
-                            <button
-                                type="button"
-                                onClick={(e) => handleFileClick(e, setUserInput, DREAM_LIMIT)}
-                                className={styles.controlButton}
-                                title="Wczytaj plik tekstowy"
-                            >
-                                <FaFileUpload />
-                            </button>
-                        )}
-                        {isMobile && (
-                            <button
-                                type="button"
-                                onClick={(e) => startSpeechRecognition(e, setUserInput, DREAM_LIMIT)}
-                                className={`${styles.controlButton} ${isRecording && activeTextarea === setUserInput ? styles.recording : ''}`}
-                                title="Rozpocznij dyktowanie"
-                                disabled={isRecording && activeTextarea !== setUserInput}
-                            >
-                                {isRecording && activeTextarea === setUserInput ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
-                            </button>
-                        )}
+                        <label className={styles.controlButton} title="Wczytaj plik .txt">
+                            <FaFileUpload />
+                            <input
+                                type="file"
+                                ref={fileInputRef1}
+                                accept=".txt,text/plain,text/*"
+                                style={{ display: 'none' }}
+                                onChange={(e) => handleFileChange(e, setUserInput, DREAM_LIMIT)}
+                            />
+                        </label>
                     </div>
                 </div>
                 <div className={styles.textareaWrapper}>
@@ -166,37 +90,16 @@ export default function UserInput({
                 <div className={styles.labelRow}>
                     <span className={styles.label}>Dodatkowe informacje</span>
                     <div className={styles.controls}>
-                        {isMobile ? (
-                            <label className={styles.controlButton} title="Wczytaj plik tekstowy">
-                                <FaFileUpload />
-                                <input
-                                    type="file"
-                                    accept=".txt"
-                                    style={{ display: 'none' }}
-                                    onChange={(e) => handleFileChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                                />
-                            </label>
-                        ) : (
-                            <button
-                                type="button"
-                                onClick={(e) => handleFileClick(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                                className={styles.controlButton}
-                                title="Wczytaj plik tekstowy"
-                            >
-                                <FaFileUpload />
-                            </button>
-                        )}
-                        {isMobile && (
-                            <button
-                                type="button"
-                                onClick={(e) => startSpeechRecognition(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
-                                className={`${styles.controlButton} ${isRecording && activeTextarea === setAdditionalInfo ? styles.recording : ''}`}
-                                title="Rozpocznij dyktowanie"
-                                disabled={isRecording && activeTextarea !== setAdditionalInfo}
-                            >
-                                {isRecording && activeTextarea === setAdditionalInfo ? <FaSpinner className={styles.spinner} /> : <FaMicrophone />}
-                            </button>
-                        )}
+                        <label className={styles.controlButton} title="Wczytaj plik .txt">
+                            <FaFileUpload />
+                            <input
+                                type="file"
+                                ref={fileInputRef2}
+                                accept=".txt,text/plain,text/*"
+                                style={{ display: 'none' }}
+                                onChange={(e) => handleFileChange(e, setAdditionalInfo, ADDITIONAL_LIMIT)}
+                            />
+                        </label>
                     </div>
                 </div>
                 <div className={styles.textareaWrapper}>
