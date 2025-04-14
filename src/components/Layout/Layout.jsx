@@ -13,6 +13,7 @@ import Privacy from '../Privacy/Privacy';
 import DreamAnalysisModal from '../DreamAnalysisModal/DreamAnalysisModal';
 import styles from './Layout.module.css';
 import ScrollIndicator from '../ScrollIndicator/ScrollIndicator';
+import NewsBox from '../NewsBox/NewsBox';
 
 function HomePage({ onAnalyzeClick }) {
   return (
@@ -49,6 +50,7 @@ export default function Layout() {
 
   return (
     <div className={styles.background}>
+      <NewsBox />
       <div className={`${styles.navbarWrapper} ${isModalRoute ? styles.blurred : ''}`}>
         <Navbar disabled={isModalRoute} onAnalyzeClick={openModal} />
       </div>
