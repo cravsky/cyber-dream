@@ -119,7 +119,6 @@ export default function DreamAnalysisForm({
           className={styles.submitButton} 
           onClick={onTest} 
           disabled={loading}
-          style={{ backgroundColor: '#888', marginLeft: '1rem' }}
         >
           TEST
         </button>
