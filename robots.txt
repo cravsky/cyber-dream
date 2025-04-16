@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /success
+Disallow: /cancel
+
+Sitemap: https://sennik.dev/sitemap.xml
