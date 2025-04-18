@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaStar, FaDownload } from 'react-icons/fa';
 import styles from './Success.module.css';
 import Feedback from '../Feedback/Feedback';
 import pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts?.default?.vfs || pdfFonts.pdfMake?.vfs;
 import { generateDreamPDF } from '../../utils/pdfUtils';
+import exampleDream from '../../data/exampleDream.json';
+
+pdfMake.vfs = pdfFonts?.default?.vfs || pdfFonts.pdfMake?.vfs;
 
 export default function Success() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [interpretation, setInterpretation] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [showFeedback, setShowFeedback] = useState(false);
-
     const [dreamText, setDreamText] = useState('');
     const [additional, setAdditional] = useState('');
 
     useEffect(() => {
-        // 🌐 Check for test session from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const testSessionId = urlParams.get("testSession");
+        const urlParams = new URLSearchParams(location.search);
+        const isExample = urlParams.get("testSession") === "example";
 
+        if (isExample) {
+            setDreamText(exampleDream.text);
+            setAdditional(exampleDream.additional);
+            setInterpretation(exampleDream.interpretation);
+            setIsLoading(false);
+            return;
+        }
+
+        const testSessionId = urlParams.get("testSession");
         if (testSessionId) {
             localStorage.setItem("sessionId", testSessionId);
         }
         
         const sessionId = localStorage.getItem("sessionId");
     
-        // ✅ Kick user out if there's no sessionId
         if (!sessionId) {
             navigate('/');
             return;
@@ -39,14 +48,8 @@ export default function Success() {
     
         setDreamText(storedText);
         setAdditional(storedAdditional);
-    
         fetchInterpretation(storedText, storedAdditional);
-    
-        // Optionally clear localStorage so reload doesn't retrigger
-        // localStorage.removeItem("text");
-        // localStorage.removeItem("additional");
     }, []);
-    
 
     const fetchInterpretation = async (text, additional) => {
         const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
@@ -74,16 +77,17 @@ export default function Success() {
             setIsLoading(false);
         }
     };
+
     const handleDownloadPDF = () => {
         generateDreamPDF({ dreamText, additional, interpretation });
-    
         localStorage.removeItem("text");
         localStorage.removeItem("additional");
     };
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <h2>Płatność zakończona powodzeniem</h2>
+                <h2>Interpretacja Twojego Snu</h2>
                 <div className={styles.interpretationBox}>
                     <h3>Twoja analiza snu</h3>
                     {isLoading ? (

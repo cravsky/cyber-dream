@@ -8,10 +8,8 @@ export default function NewsBox() {
 
   useEffect(() => {
     const stored = localStorage.getItem('newsSeenVersion');
-    console.log("📦 Stored version:", stored);
 
     if (stored !== NEWS_VERSION) {
-      console.log("✅ New version, showing box");
       setShowBox(true);
     }
   }, []);

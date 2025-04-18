@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Routes, Route } from 'react-router-dom';
+import { useLocation, Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Hero from '../Hero/Hero';
 import Manual from '../Manual/Manual';
@@ -16,12 +16,18 @@ import ScrollIndicator from '../ScrollIndicator/ScrollIndicator';
 import NewsBox from '../NewsBox/NewsBox';
 
 function HomePage({ onAnalyzeClick }) {
+  const navigate = useNavigate();
+
+  const handleExampleClick = () => {
+    navigate('/success?testSession=example');
+  };
+
   return (
     <>
       <Hero />
       <ScrollIndicator />
       <Manual />
-      <CTA onAnalyzeClick={onAnalyzeClick} />
+      <CTA onAnalyzeClick={onAnalyzeClick} onExampleClick={handleExampleClick} />
       <Testimonials />
       <Footer />
     </>
