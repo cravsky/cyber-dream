@@ -107,20 +107,20 @@ export default function DreamAnalysisForm({
         >
           Anuluj
         </button>
-        <button 
+        {/* <button 
           className={styles.submitButton} 
           onClick={onSubmit}
           disabled={loading}
         >
           {loading ? 'Przetwarzanie...' : 'Rozpocznij analizę'}
-        </button>
+        </button> */}
         {/* TEST BUTTON REMOVE LATER */}
         <button 
           className={styles.submitButton} 
           onClick={onTest} 
           disabled={loading}
         >
-          TEST
+          {loading ? 'Przetwarzanie...' : 'Analizuj (test)'}
         </button>
       </div>
     </div>
