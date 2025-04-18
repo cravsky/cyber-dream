@@ -16,7 +16,7 @@ export default function Manual() {
     },
     {
       icon: <FaCreditCard />,
-      title: "Dokonaj płatności - 10 zł",
+      title: "Dokonaj płatności",
       description: "Bezpieczna płatność online. Twoje dane są w pełni chronione.",
       tooltip: "Akceptujemy płatności kartą oraz BLIKIEM. Wszystkie transakcje są szyfrowane i w pełni bezpieczne. To jednorazowa opłata — bez subskrypcji i ukrytych kosztów."
     },

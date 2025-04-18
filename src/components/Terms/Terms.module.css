@@ -41,7 +41,11 @@
     transform: rotate(90deg);
 }
 
-.content h1 {
+.markdown {
+    color: var(--color-text);
+}
+
+.markdown h1 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
@@ -51,25 +55,20 @@
     letter-spacing: 1px;
 }
 
-.content section {
-    margin: 2rem 0;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-    animation: none;
-}
-
-.content h2 {
+.markdown h2 {
     font-size: 1.5rem;
     color: var(--color-primary);
-    margin-bottom: 1rem;
+    margin: 2rem 0 1rem;
 }
 
-.content p {
+.markdown p {
     margin: 0.5rem 0;
-    color: var(--color-text);
     font-size: 1.1rem;
     line-height: 1.6;
+}
+
+.markdown strong {
+    color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
@@ -90,16 +89,16 @@
         font-size: 1rem;
     }
 
-    .content h1 {
+    .markdown h1 {
         font-size: 2rem;
         margin-bottom: 1.5rem;
     }
 
-    .content h2 {
+    .markdown h2 {
         font-size: 1.3rem;
     }
 
-    .content p {
+    .markdown p {
         font-size: 1rem;
     }
 }
