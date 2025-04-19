@@ -14,12 +14,12 @@ export default function Manual() {
       description: "Podziel się swoim snem - im więcej detali, tym dokładniejsza będzie interpretacja. Nie podawaj danych osobowych!",
       tooltip: "Możesz opisać sen własnymi słowami lub wkleić gotowy tekst. Unikaj podawania danych osobowych — takich jak imię i nazwisko, adres, numer telefonu czy PESEL. Nie zbieramy takich informacji.",
     },
-    {
-      icon: <FaCreditCard />,
-      title: "Dokonaj płatności",
-      description: "Bezpieczna płatność online. Twoje dane są w pełni chronione.",
-      tooltip: "Akceptujemy płatności kartą oraz BLIKIEM. Wszystkie transakcje są szyfrowane i w pełni bezpieczne. To jednorazowa opłata — bez subskrypcji i ukrytych kosztów."
-    },
+    // {
+    //   icon: <FaCreditCard />,
+    //   title: "Dokonaj płatności",
+    //   description: "Bezpieczna płatność online. Twoje dane są w pełni chronione.",
+    //   tooltip: "Akceptujemy płatności kartą oraz BLIKIEM. Wszystkie transakcje są szyfrowane i w pełni bezpieczne. To jednorazowa opłata — bez subskrypcji i ukrytych kosztów."
+    // },
     {
       icon: <FaBrain />,
       title: "Analiza AI",
